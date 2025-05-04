@@ -12,8 +12,13 @@
       requiresAuth: false,
     },
   })
+  const store = useUserStore();
   const router = useRouter()
-
+  onMounted(() => {
+    if (store.isLoggedIn) {
+      router.push({name: '/'});
+    }
+  })
   const formValid = ref(false);
   const email = ref('');
   const emailRules = ref([
@@ -45,7 +50,6 @@
 </script>
 
 <template>
-  <div class="d-flex flex-column align-center vh-100 justify-center ma-9">
     <v-card max-width="800" min-width="400" subtitle="Entrez vos identifiants" title="Connexion">
       <template #text>
         <div class="d-flex flex-column ga-3">
@@ -68,7 +72,6 @@
         </div>
       </template>
     </v-card>
-  </div>
 </template>
 
 <style lang="sass" scoped>

@@ -11,6 +11,7 @@ const router = useRouter()
 </script>
 
 <template>
+  <div class="d-flex flex-column h-75 justify-center align-center ga-9">
   <h1>Page d'authentifiaction</h1>
   <div class="d-flex justify-center align-center ga-3">
     <v-btn max-height="250" max-width="250" prepend-icon="mdi-login" @click="router.push('/auth/login')">Connexion
@@ -19,6 +20,7 @@ const router = useRouter()
            @click="router.push('/auth/register')">
       Inscription
     </v-btn>
+  </div>
   </div>
 </template>
 

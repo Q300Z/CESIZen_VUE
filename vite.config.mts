@@ -11,6 +11,8 @@ import Vuetify, { transformAssetUrls } from 'vite-plugin-vuetify'
 // Utilities
 import { defineConfig } from 'vite'
 import { fileURLToPath, URL } from 'node:url'
+import { createHtmlPlugin } from 'vite-plugin-html'
+import vueDevTools from 'vite-plugin-vue-devtools'
 
 // https://vitejs.dev/config/
 export default defineConfig({
@@ -58,6 +60,8 @@ export default defineConfig({
         ],
       },
     }),
+    vueDevTools(),
+    createHtmlPlugin({}),
   ],
   optimizeDeps: {
     exclude: [

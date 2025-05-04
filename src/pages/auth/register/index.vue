@@ -76,7 +76,6 @@
 </script>
 
 <template>
-  <div class="d-flex flex-column align-center">
     <v-alert v-if="showAlert" v-model="showAlert" :type="alertType" class="mb-4" dismissible>
       {{ alertMessage }}
     </v-alert>
@@ -95,7 +94,6 @@
       </template>
 
     </v-stepper>
-  </div>
 </template>
 
 <style lang="sass" scoped>

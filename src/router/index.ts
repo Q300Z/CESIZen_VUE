@@ -50,8 +50,10 @@ router.beforeEach((to: RouteLocationNormalized, from: RouteLocationNormalizedLoa
    if (isRequiredAuth) {
     if (
       !store.isLoggedIn &&
-      to.name !== '/auth/')
+      to.name !== '/auth/'){
+      console.log('User is not logged in, redirecting to auth page')
       next({ name: '/auth/' })
+    }
     else {
       if (isRequiredAdmin && !store.isAdmin) {
         next({ name: '/' })
