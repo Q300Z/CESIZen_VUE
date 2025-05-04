@@ -18,7 +18,8 @@
 			"GitHub.copilot-chat",
 			"redhat.vscode-yaml",
 			"Vue.volar",
-			"dbaeumer.vscode-eslint"
+			"dbaeumer.vscode-eslint",
+			"syler.sass-indented"
 		],
 		"settings": {
 			"editor.gotoLocation.multipleDefinitions": "goto",

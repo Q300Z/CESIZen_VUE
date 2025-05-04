@@ -3,13 +3,13 @@ FROM node:latest
 RUN npm install -g npm@11.3.0
 RUN apt update && apt install -y adb sdkmanager && apt clean
 
-RUN wget https://download.oracle.com/java/24/latest/jdk-24_linux-x64_bin.deb
-RUN dpkg -i jdk-24_linux-x64_bin.deb
-RUN rm jdk-24_linux-x64_bin.deb
+RUN wget https://download.oracle.com/java/21/latest/jdk-21_linux-x64_bin.deb
+RUN dpkg -i jdk-21_linux-x64_bin.deb
+RUN rm jdk-21_linux-x64_bin.deb
 RUN update-alternatives --list java
 
 # Set JAVA_HOME environment variable
-ENV JAVA_HOME=/usr/lib/jvm/java-24-openjdk-amd64
+ENV JAVA_HOME=/usr/lib/jvm/java-21-openjdk-amd64
 # Set PATH environment variable to include Java binaries
 ENV PATH=$JAVA_HOME/bin:$PATH
 

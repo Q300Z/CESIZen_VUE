@@ -32,6 +32,7 @@ export default defineConfig({
         enabled: true,
       },
       vueTemplate: true,
+      vueDirectives: true,
     }),
     Components({
       dts: 'src/components.d.ts',

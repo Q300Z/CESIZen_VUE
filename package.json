@@ -7,7 +7,7 @@
     "dev": "vite",
     "build": "run-p type-check \"build-only {@}\" --",
     "preview": "vite preview",
-    "build-only": "vite build",
+    "build-only": "vite build && npx cap sync",
     "type-check": "vue-tsc --build --force",
     "lint": "eslint . --fix"
   },
@@ -25,7 +25,7 @@
   "devDependencies": {
     "@capacitor/cli": "^7.2.0",
     "@tsconfig/node22": "^22.0.0",
-    "@types/node": "^22.9.0",
+    "@types/node": "^22.15.3",
     "@vitejs/plugin-vue": "^5.2.3",
     "@vue/tsconfig": "^0.7.0",
     "eslint": "^9.23.0",

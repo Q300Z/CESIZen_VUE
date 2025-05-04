@@ -9,6 +9,10 @@
     "baseUrl": ".",
     "paths": {
       "@/*": ["./src/*"]
-    }
+    },
+    "types": [
+      "node",
+      "vite-plugin-vue-layouts-next/client"
+    ]
   }
 }

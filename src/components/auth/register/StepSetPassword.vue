@@ -1,0 +1,61 @@
+<script lang="ts" setup>
+import {defineEmits, ref} from 'vue';
+
+const emit = defineEmits<{
+  (e: 'password', value: string): void;
+  (e: 'passwordValide', value: boolean): void;
+}>();
+const formValid = ref(false);
+const password = ref('');
+const passwordRules = ref([
+  (v: string) => !!v || 'Le mot de passe est requis',
+  (v: string) => v.length >= 8 || 'Le mot de passe doit contenir au moins 8 caractères',
+  (v: string) => /[A-Z]/.test(v) || 'Le mot de passe doit contenir au moins une majuscule',
+  (v: string) => /[a-z]/.test(v) || 'Le mot de passe doit contenir au moins une minuscule',
+  (v: string) => /[0-9]/.test(v) || 'Le mot de passe doit contenir au moins un chiffre',
+  (v: string) => /[!@#$%^&*(),.?":{}|<>]/.test(v) || 'Le mot de passe doit contenir au moins un caractère spécial',
+]);
+
+const confirmPassword = ref('');
+const confirmPasswordRules = ref([
+  (v: string) => !!v || 'Le mot de passe est requis',
+  (v: string) => v === password.value || 'Les mots de passe ne correspondent pas',
+]);
+
+
+const submit = () => {
+  emit('password', password.value);
+  emit('passwordValide', formValid.value);
+};
+</script>
+
+<template>
+  <v-card flat subtitle="Entrez votre adresse e-mail pour réinitialiser votre mot de passe"
+          title="Information utilisateur">
+    <template #text>
+      <div class="d-flex flex-column ga-2">
+        <v-form v-model="formValid">
+          <v-text-field
+            v-model="password"
+            :rules="passwordRules"
+            label="Mot de passe"
+            type="password"
+            @input="submit"
+          />
+          <v-text-field
+            v-model="confirmPassword"
+            :rules="confirmPasswordRules"
+            label="Confirmation du mot de passe"
+            type="password"
+            @input="submit"
+          />
+        </v-form>
+      </div>
+
+    </template>
+  </v-card>
+</template>
+
+<style lang="sass" scoped>
+
+</style>
