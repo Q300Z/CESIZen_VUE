@@ -19,9 +19,15 @@ declare module 'vue-router/auto-routes' {
    */
   export interface RouteNamedMap {
     '/': RouteRecordInfo<'/', '/', Record<never, never>, Record<never, never>>,
+    '/admin/users/': RouteRecordInfo<'/admin/users/', '/admin/users', Record<never, never>, Record<never, never>>,
+    '/admin/users/[id]': RouteRecordInfo<'/admin/users/[id]', '/admin/users/:id', { id: ParamValue<true> }, { id: ParamValue<false> }>,
+    '/admin/users/add/': RouteRecordInfo<'/admin/users/add/', '/admin/users/add', Record<never, never>, Record<never, never>>,
+    '/admin/users/edit/[id]': RouteRecordInfo<'/admin/users/edit/[id]', '/admin/users/edit/:id', { id: ParamValue<true> }, { id: ParamValue<false> }>,
     '/auth/': RouteRecordInfo<'/auth/', '/auth', Record<never, never>, Record<never, never>>,
     '/auth/forgot/': RouteRecordInfo<'/auth/forgot/', '/auth/forgot', Record<never, never>, Record<never, never>>,
     '/auth/login/': RouteRecordInfo<'/auth/login/', '/auth/login', Record<never, never>, Record<never, never>>,
     '/auth/register/': RouteRecordInfo<'/auth/register/', '/auth/register', Record<never, never>, Record<never, never>>,
+    '/profile/': RouteRecordInfo<'/profile/', '/profile', Record<never, never>, Record<never, never>>,
+    '/profile/edit/[id]': RouteRecordInfo<'/profile/edit/[id]', '/profile/edit/:id', { id: ParamValue<true> }, { id: ParamValue<false> }>,
   }
 }

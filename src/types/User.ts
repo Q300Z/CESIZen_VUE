@@ -1,6 +1,7 @@
 import { en } from "vuetify/locale"
 
 export enum Role {
+  ANONYMOUS = 'anonymous',
   ADMIN = 'admin',
   USER = 'user',
 }
@@ -12,7 +13,7 @@ export interface User {
   role: Role
   created_at: string
   updated_at: string
-  token: string | null
+  token?: string
 }
 
 export interface UserResponse {

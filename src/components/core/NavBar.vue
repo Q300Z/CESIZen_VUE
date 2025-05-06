@@ -17,6 +17,12 @@ onMounted(() => {
     v-model="_drawer"
     :temporary="$vuetify.display.mobile"
   >
+  <template #append>
+    <v-divider></v-divider>
+    <v-list>
+    <v-list-item v-role="['admin']" link prepend-icon="mdi-account-group" title="Gestion utilisateurs" to="/admin/users"/>
+    </v-list>
+  </template>
   </v-navigation-drawer>
 </template>
 

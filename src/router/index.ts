@@ -44,8 +44,8 @@ router.isReady().then(() => {
 router.beforeEach((to: RouteLocationNormalized, from: RouteLocationNormalizedLoaded, next: NavigationGuardNext) => {
   const store = useUserStore();
 
-  const isRequiredAuth = to.meta.requiresAuth
-  const isRequiredAdmin = to.meta.isAdmin
+  const isRequiredAuth = to.meta.requiresAuth || false
+  const isRequiredAdmin = to.meta.isAdmin || false
 
    if (isRequiredAuth) {
     if (

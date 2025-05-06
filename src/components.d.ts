@@ -11,8 +11,11 @@ declare module 'vue' {
     AppBar: typeof import('./components/core/AppBar.vue')['default']
     AppFooter: typeof import('./components/AppFooter.vue')['default']
     HelloWorld: typeof import('./components/HelloWorld.vue')['default']
+    MenuUser: typeof import('./components/profile/MenuUser.vue')['default']
     NavBar: typeof import('./components/core/NavBar.vue')['default']
     NotFound: typeof import('./components/core/NotFound.vue')['default']
+    ProfilCard: typeof import('./components/profile/ProfilCard.vue')['default']
+    ProfilForm: typeof import('./components/profile/ProfilForm.vue')['default']
     RouterLink: typeof import('vue-router')['RouterLink']
     RouterView: typeof import('vue-router')['RouterView']
     SafeArea: typeof import('./components/core/SafeArea.vue')['default']
@@ -21,5 +24,6 @@ declare module 'vue' {
     StepSendEmail: typeof import('./components/auth/forgot/StepSendEmail.vue')['default']
     StepSetPassword: typeof import('./components/auth/register/StepSetPassword.vue')['default']
     StepUserInfo: typeof import('./components/auth/register/StepUserInfo.vue')['default']
+    VListProfile: typeof import('./components/profile/VListProfile.vue')['default']
   }
 }
