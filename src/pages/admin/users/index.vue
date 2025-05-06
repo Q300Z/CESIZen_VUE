@@ -16,13 +16,13 @@ const store=useUserStore()
 const users:ComputedRef<User[]> = computed(()=>store.getUsers)
 
 const headers = [
-  { title: 'ID', key: 'id', align: 'start' },
+  { title: 'ID', key: 'id' },
   { title: "Nom d'utilisateur", key: 'name' },
   { title: 'Courriel', key: 'email' },
   { title: 'Rôle', key: 'role' },
   { title: 'Date de création', key: 'created_at' },
   { title: 'Date de mise à jour', key: 'updated_at' },
-  { title: 'Actions', key: 'actions', sortable: false, align: 'end' }
+  { title: 'Actions', key: 'actions', sortable: false }
 ]
 
 onMounted(async ()=>{
