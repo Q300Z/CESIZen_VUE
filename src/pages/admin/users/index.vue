@@ -40,6 +40,18 @@ onMounted(async ()=>{
   }
 
 })
+
+const deleteUser = async (user:User)=>{
+  store.removeUser(user)
+  //const res:AxiosResponse<APIResponse<User>> = await axios.delete(`/users/${user.id}`)
+  // if (res.status === 200){
+  //   if (res.data.data){
+  //     store.removeUser(user)
+  //     console.log(res.data.message)
+  //   }
+  // }
+}
+
 </script>
 
 <template>
@@ -53,12 +65,16 @@ onMounted(async ()=>{
   </template>
 
   <template #item.actions="{ item }">
-    <v-btn icon :to="'/admin/users/'+item.id">
+    <v-btn icon :to="'/admin/users/'+item.id" variant="text">
       <v-icon>mdi-pencil</v-icon>
     </v-btn>
-    <v-btn icon>
-      <v-icon>mdi-delete</v-icon>
-    </v-btn>
+    <ModalConfirmation @confirm="() => deleteUser(item)" title="Confirmation de suppression">
+      <template #activation="{props}">
+        <v-btn icon variant="text" v-bind="props">
+          <v-icon>mdi-delete</v-icon>
+        </v-btn>
+      </template>
+    </ModalConfirmation>
   </template>
 </v-data-table>
 </template>

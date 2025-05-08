@@ -12,6 +12,8 @@ declare module 'vue' {
     AppFooter: typeof import('./components/AppFooter.vue')['default']
     HelloWorld: typeof import('./components/HelloWorld.vue')['default']
     MenuUser: typeof import('./components/profile/MenuUser.vue')['default']
+    ModalComfirmation: typeof import('./components/core/ModalComfirmation.vue')['default']
+    ModalConfirmation: typeof import('./components/core/ModalConfirmation.vue')['default']
     NavBar: typeof import('./components/core/NavBar.vue')['default']
     NotFound: typeof import('./components/core/NotFound.vue')['default']
     ProfilCard: typeof import('./components/profile/ProfilCard.vue')['default']
