@@ -1,7 +1,7 @@
 // Utilities
-import { defineStore } from 'pinia';
-import { type Article } from '@/types';
-import { useStorage } from '@vueuse/core';
+import {defineStore} from 'pinia';
+import {type Article} from '@/types';
+import {useStorage} from '@vueuse/core';
 
 export const useArticleStore = defineStore('article', {
   state: () => ({

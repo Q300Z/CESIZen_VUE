@@ -1,6 +1,5 @@
 <script lang="ts" setup>
-import {Role, type Article} from '@/types'
-import {useArticleStore} from "@/stores/article.ts"
+import {type Article} from '@/types'
 
 const props = defineProps<{
   modelValue: Article | undefined
@@ -15,7 +14,7 @@ const {modelValue} = toRefs(props)
 const form = ref<Partial<Article>>({
   title: '',
   description: '',
-  content:''
+  content: ''
 })
 
 watch(modelValue, (value) => {
@@ -33,18 +32,17 @@ const handleSubmit = () => {
   <v-form @submit.prevent="handleSubmit">
     <v-text-field
       v-model="form.title"
-      label="Nom"
+      label="Titre"
       required
     />
 
     <v-text-field
       v-model="form.description"
-      label="Email"
+      label="Description"
       required
-      type="email"
     />
 
-   <v-textarea v-model="form.content"></v-textarea>
+    <v-textarea v-model="form.content" auto-grow counter></v-textarea>
 
     <v-btn class="mt-4" color="primary" type="submit">Valider</v-btn>
   </v-form>

@@ -1,9 +1,8 @@
 <script lang="ts" setup>
 import {definePage} from "unplugin-vue-router/runtime"
 import axios from "@/lib/axios"
-import type {RouteParams, Article} from "@/types"
+import type {Article, RouteParams} from "@/types"
 import {onMounted, ref} from "vue"
-import ProfilForm from "@/components/profile/ProfilForm.vue"
 import {useArticleStore} from "@/stores/article.ts"
 
 definePage({
@@ -27,19 +26,19 @@ const submit = async (formData: Partial<Article>) => {
     if (!article.value) return
 
     const res = await axios.put(`/articles/${article.value.id}`, {
-      title:formData.title,
-      description:formData.description,
-      content:formData.content,
+      title: formData.title,
+      description: formData.description,
+      content: formData.content,
     })
-      store.updateArticle(res.data.data)
-      console.log("Article mis à jour :", res.data.data)
+    store.updateArticle(res.data.data)
+    console.log("Article mis à jour :", res.data.data)
 
-      alert.value = 'Article mis à jour avec succès.'
-      alertType.value = 'success'
+    alert.value = 'Article mis à jour avec succès.'
+    alertType.value = 'success'
 
-      setTimeout(() => {
-        router.push(`/admin/infos/${res.data.data.id}`)
-      }, 1500)
+    setTimeout(() => {
+      router.push(`/admin/infos/${res.data.data.id}`)
+    }, 1500)
   } catch (error) {
     console.error("Erreur lors de la mise à jour de l'article :", error)
     alert.value = "Une erreur est survenue lors de la mise à jour de l'article."

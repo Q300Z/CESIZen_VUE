@@ -1,6 +1,6 @@
 import type {User} from "@/types/User.ts";
 
-export interface Article{
+export interface Article {
   id: number;
   title: string;
   description: string;

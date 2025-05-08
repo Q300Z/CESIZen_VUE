@@ -1,17 +1,16 @@
-<script setup lang="ts">
+<script lang="ts" setup>
 
 import {useArticleStore} from "@/stores/article.ts";
 import {onMounted} from "vue";
-import type {APIResponse, Article, RouteParams, User} from "@/types";
+import type {APIResponse, Article, RouteParams} from "@/types";
 import type {AxiosResponse} from "axios";
 import axios from "@/lib/axios.ts";
-import ProfilCard from "@/components/profile/ProfilCard.vue";
 
 const store = useArticleStore()
 const router = useRouter()
 const route = useRoute()
 
-const article:Ref<Article|null> = ref(null)
+const article: Ref<Article | null> = ref(null)
 
 onMounted(async () => {
   const {id} = route.params as RouteParams
@@ -19,7 +18,7 @@ onMounted(async () => {
 
   try {
     const res: AxiosResponse<APIResponse<Article>> = await axios.get(`articles/${articleId}`)
-    if(res.status === 200 && res.data.data) {
+    if (res.status === 200 && res.data.data) {
       store.updateArticle(res.data.data)
       article.value = res.data.data
     } else {
@@ -43,6 +42,6 @@ onMounted(async () => {
   </div>
 </template>
 
-<style scoped lang="sass">
+<style lang="sass" scoped>
 
 </style>

@@ -1,11 +1,9 @@
 <script lang="ts" setup>
 import {definePage} from 'unplugin-vue-router/runtime'
-import {articleoute, articleouter} from 'vue-router'
 import axios from '@/lib/axios'
-import type {APIResponse, RouteParams, Article} from '@/types'
+import type {APIResponse, Article, RouteParams} from '@/types'
 import {onMounted, ref} from 'vue'
 import {useArticleStore} from '@/stores/article'
-import ProfilCard from '@/components/profile/ProfilCard.vue'
 import type {AxiosResponse} from "axios";
 
 definePage({
@@ -27,7 +25,7 @@ onMounted(async () => {
 
   try {
     const res: AxiosResponse<APIResponse<Article>> = await axios.get(`articles/${articleId}`)
-    if(res.status === 200 && res.data.data) {
+    if (res.status === 200 && res.data.data) {
       store.updateArticle(res.data.data)
       article.value = res.data.data
     } else {
