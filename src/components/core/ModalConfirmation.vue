@@ -1,4 +1,4 @@
-<script setup lang="ts">
+<script lang="ts" setup>
 const props = defineProps<{
   title?: string;
   description?: string;
@@ -12,10 +12,10 @@ const emit = defineEmits<{
 <template>
   <v-dialog>
     <template v-slot:activator="{ props: activatorProps }">
-      <slot name="activation" :props="activatorProps">
-      <v-btn v-bind="activatorProps">
-        Confirmation
-      </v-btn>
+      <slot :props="activatorProps" name="activation">
+        <v-btn v-bind="activatorProps">
+          Confirmation
+        </v-btn>
       </slot>
     </template>
 
@@ -35,13 +35,13 @@ const emit = defineEmits<{
             text
             @click="emit('confirm');isActive.value=false"
           >
-          Confirmer
+            Confirmer
           </v-btn>
           <v-btn
             text
             @click="isActive.value=false"
           >
-          Annuler
+            Annuler
           </v-btn>
         </v-card-actions>
       </v-card>
@@ -49,6 +49,6 @@ const emit = defineEmits<{
   </v-dialog>
 </template>
 
-<style scoped lang="sass">
+<style lang="sass" scoped>
 /* Ajoutez vos styles ici si nécessaire */
 </style>

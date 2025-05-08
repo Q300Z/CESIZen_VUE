@@ -20,7 +20,8 @@ const getRoleColor = (role: Role) => {
 </script>
 
 <template>
-  <v-card :subtitle="user.email" :title="user.name" elevation="3" prepend-icon="mdi-account" :min-width="$vuetify.display.mobile?0:800">
+  <v-card :min-width="$vuetify.display.mobile?0:800" :subtitle="user.email" :title="user.name" elevation="3"
+          prepend-icon="mdi-account">
     <v-card-text>
       <div class="d-flex ga-5">
         <div>
@@ -30,7 +31,7 @@ const getRoleColor = (role: Role) => {
           </v-chip>
         </div>
         <v-spacer/>
-        <slot name="action" :item="user"></slot>
+        <slot :item="user" name="action"></slot>
       </div>
     </v-card-text>
   </v-card>

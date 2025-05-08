@@ -17,11 +17,11 @@ export const useUserStore = defineStore('auth', {
     token: useStorage('token', '' as User['token'] | null, localStorage),
     user: useStorage<User>('user', DEFAULT_USER, localStorage, {
       serializer: {
-        read: (v: string):User => JSON.parse(v),
-        write: (v: User):string => JSON.stringify(v),
+        read: (v: string): User => JSON.parse(v),
+        write: (v: User): string => JSON.stringify(v),
       },
     }),
-    users: useStorage('users', [] as User[],localStorage),
+    users: useStorage('users', [] as User[], localStorage),
   }),
 
   getters: {

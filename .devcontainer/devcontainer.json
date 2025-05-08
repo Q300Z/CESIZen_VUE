@@ -1,37 +1,39 @@
 // See https://containers.dev/implementors/json_reference/ for configuration reference
 {
-	"name": "CESIZen_VUE",
-	"build": {
-		"dockerfile": "Dockerfile"
-	},
+  "name": "CESIZen_VUE",
+  "build": {
+    "dockerfile": "Dockerfile"
+  },
   // Features to add to the dev container. More info: https://containers.dev/features.
   "features": {
     "ghcr.io/devcontainers/features/docker-in-docker:2": {}
   },
-  "customizations" : {
-    "jetbrains" : {
-      "backend" : "WebStorm"
-	},
-	"vscode": {
-		"extensions": [
-			"GitHub.copilot",
-			"GitHub.copilot-chat",
-			"redhat.vscode-yaml",
-			"Vue.volar",
-			"dbaeumer.vscode-eslint",
-			"syler.sass-indented"
-		],
-		"settings": {
-			"editor.gotoLocation.multipleDefinitions": "goto",
-			"editor.defaultFormatter": "Vue.volar",
-			 "eslint.validate": [
-				"javascript",
-				"javascriptreact",
-				"vue",
-				"typescript"
-			]
-		}
-	}
+  "customizations": {
+    "jetbrains": {
+      "backend": "WebStorm"
+    },
+    "vscode": {
+      "extensions": [
+        "GitHub.copilot",
+        "GitHub.copilot-chat",
+        "redhat.vscode-yaml",
+        "Vue.volar",
+        "dbaeumer.vscode-eslint",
+        "syler.sass-indented"
+      ],
+      "settings": {
+        "editor.gotoLocation.multipleDefinitions": "goto",
+        "editor.defaultFormatter": "Vue.volar",
+        "eslint.validate": [
+          "javascript",
+          "javascriptreact",
+          "vue",
+          "typescript"
+        ]
+      }
+    }
   },
-	appPort: [3000],
+  appPort: [
+    3000
+  ],
 }

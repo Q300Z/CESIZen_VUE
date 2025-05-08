@@ -9,12 +9,12 @@ const logout = () => {
 
 const getRole = computed(() => {
   if (store.user) {
-   switch (store.user.role) {
+    switch (store.user.role) {
       case 'admin':
         return 'Administrateur'
       default:
         return 'Utilisateur'
-   }
+    }
   }
   return 'Anonymous'
 })

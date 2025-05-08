@@ -5,10 +5,16 @@
  */
 
 // Composables
-import { createRouter, createWebHistory, type NavigationGuardNext, type RouteLocationNormalized, type RouteLocationNormalizedLoaded } from 'vue-router/auto'
-import { setupLayouts } from 'virtual:generated-layouts'
-import { routes } from 'vue-router/auto-routes'
-import { useUserStore } from '@/stores/user'
+import {
+  createRouter,
+  createWebHistory,
+  type NavigationGuardNext,
+  type RouteLocationNormalized,
+  type RouteLocationNormalizedLoaded
+} from 'vue-router/auto'
+import {setupLayouts} from 'virtual:generated-layouts'
+import {routes} from 'vue-router/auto-routes'
+import {useUserStore} from '@/stores/user'
 import NotFound from '@/components/core/NotFound.vue'
 
 const router = createRouter({
@@ -47,22 +53,21 @@ router.beforeEach((to: RouteLocationNormalized, from: RouteLocationNormalizedLoa
   const isRequiredAuth = to.meta.requiresAuth || false
   const isRequiredAdmin = to.meta.isAdmin || false
 
-   if (isRequiredAuth) {
+  if (isRequiredAuth) {
     if (
       !store.isLoggedIn &&
-      to.name !== '/auth/'){
+      to.name !== '/auth/') {
       console.log('User is not logged in, redirecting to auth page')
-      next({ name: '/auth/' })
-    }
-    else {
+      next({name: '/auth/'})
+    } else {
       if (isRequiredAdmin && !store.isAdmin) {
-        next({ name: '/' })
+        next({name: '/'})
         return
       } else
         next()
     }
   } else
-  next()
+    next()
 });
 
 export default router

@@ -27,7 +27,7 @@ onMounted(async () => {
 
   try {
     const res: AxiosResponse<APIResponse<User>> = await axios.get(`users/${userId}`)
-    if(res.status === 200 && res.data.data) {
+    if (res.status === 200 && res.data.data) {
       store.updateUser(res.data.data)
       user.value = res.data.data
     } else {

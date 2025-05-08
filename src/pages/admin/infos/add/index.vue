@@ -2,8 +2,6 @@
 import {definePage} from "unplugin-vue-router/runtime"
 import type {Article} from "@/types"
 import axios from "@/lib/axios"
-import ProfilForm from "@/components/profile/ProfilForm.vue"
-import {articleouter} from "vue-router"
 import {ref} from "vue"
 
 definePage({
@@ -22,18 +20,18 @@ const alertType = ref<'success' | 'error'>('success')
 const submit = async (formData: Partial<Article>) => {
   try {
     const res = await axios.post('/articles', formData)
-    console.log("Utilisateur créé :", res.data.data)
+    console.log("Article créé :", res.data.data)
 
-    alert.value = 'Utilisateur créé avec succès.'
+    alert.value = 'Article créé avec succès.'
     alertType.value = 'success'
 
     setTimeout(() => {
-      router.push(`/admin/articles/${res.data.data.id}`)
+      router.push(`/admin/infos/${res.data.data.id}`)
     }, 1500)
 
   } catch (error) {
-    console.error("Erreur lors de la création du profil :", error)
-    alert.value = "Une erreur est survenue lors de la création de l'utilisateur."
+    console.error("Erreur lors de la création de l'article :", error)
+    alert.value = "Une erreur est survenue lors de la création de l'article."
     alertType.value = 'error'
   }
 }
@@ -41,7 +39,7 @@ const submit = async (formData: Partial<Article>) => {
 
 <template>
   <div>
-    <h1 class="text-h5 mb-4">Ajout d’un utilisateur</h1>
+    <h1 class="text-h5 mb-4">Ajout d’un article</h1>
 
     <v-alert
       v-if="alert"
@@ -55,7 +53,7 @@ const submit = async (formData: Partial<Article>) => {
       {{ alert }}
     </v-alert>
 
-    <ProfilForm :model-value="article" @submit="submit"/>
+    <ArticleForm :model-value="article" @submit="submit"/>
   </div>
 </template>
 

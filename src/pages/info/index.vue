@@ -1,10 +1,10 @@
-<script setup lang="ts">
-import { ref, computed, onMounted } from 'vue';
-import { useArticleStore } from "@/stores/article.ts";
-import type { APIResponse, Article } from "@/types";
-import type { AxiosResponse } from "axios";
+<script lang="ts" setup>
+import {computed, onMounted, ref} from 'vue';
+import {useArticleStore} from "@/stores/article.ts";
+import type {APIResponse, Article} from "@/types";
+import type {AxiosResponse} from "axios";
 import axios from "@/lib/axios.ts";
-import { definePage } from "unplugin-vue-router/runtime";
+import {definePage} from "unplugin-vue-router/runtime";
 
 definePage({
   meta: {
@@ -39,8 +39,8 @@ onMounted(async () => {
     <v-data-iterator
       :items="articles"
       :loading="loading"
-      items-per-page="6"
       class="mt-4"
+      items-per-page="6"
     >
       <template #default="{ items }">
         <v-row>
@@ -48,8 +48,8 @@ onMounted(async () => {
             v-for="article in items"
             :key="article.raw.id"
             cols="12"
-            sm="6"
             md="4"
+            sm="6"
           >
             <ArticleCard :article="article.raw">
               <template #action="{item}">
@@ -67,8 +67,8 @@ onMounted(async () => {
 
       <template #loader>
         <v-row>
-          <v-col cols="12" sm="6" md="4" v-for="n in 6" :key="n">
-            <v-skeleton-loader type="card" />
+          <v-col v-for="n in 6" :key="n" cols="12" md="4" sm="6">
+            <v-skeleton-loader type="card"/>
           </v-col>
         </v-row>
       </template>
@@ -76,5 +76,5 @@ onMounted(async () => {
   </v-container>
 </template>
 
-<style scoped lang="sass">
+<style lang="sass" scoped>
 </style>

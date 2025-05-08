@@ -1,12 +1,12 @@
 // role.ts
-import type { DirectiveBinding, ObjectDirective } from 'vue'
-import { useUserStore } from '@/stores/user'
-import { Role, type User } from '@/types';
+import type {DirectiveBinding, ObjectDirective} from 'vue'
+import {useUserStore} from '@/stores/user'
+import {Role, type User} from '@/types';
 
 const roleDirective: ObjectDirective = {
-  mounted (el: HTMLElement, binding: DirectiveBinding<User['role'] | User['role'][]>) {
+  mounted(el: HTMLElement, binding: DirectiveBinding<User['role'] | User['role'][]>) {
     const store = useUserStore()
-    const currentRole:User['role'] = store.user?.role || Role.USER
+    const currentRole: User['role'] = store.user?.role || Role.USER
 
     const allowedRoles = Array.isArray(binding.value)
       ? binding.value
@@ -17,9 +17,9 @@ const roleDirective: ObjectDirective = {
     }
   },
 
-  updated (el: HTMLElement, binding: DirectiveBinding<User['role'] | User['role'][]>) {
+  updated(el: HTMLElement, binding: DirectiveBinding<User['role'] | User['role'][]>) {
     const store = useUserStore()
-    const currentRole:User['role'] = store.user?.role || Role.USER
+    const currentRole: User['role'] = store.user?.role || Role.USER
 
     const allowedRoles = Array.isArray(binding.value)
       ? binding.value

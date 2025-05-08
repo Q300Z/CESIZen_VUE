@@ -1,6 +1,5 @@
 <script lang="ts" setup>
 import {Role, type User} from '@/types'
-import {useUserStore} from "@/stores/user.ts"
 
 const props = defineProps<{
   modelValue: User | undefined

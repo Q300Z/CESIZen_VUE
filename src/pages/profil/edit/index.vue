@@ -2,7 +2,7 @@
 import {definePage} from "unplugin-vue-router/runtime"
 import {useRoute, useRouter} from "vue-router"
 import axios from "@/lib/axios"
-import type {RouteParams, User} from "@/types"
+import type {User} from "@/types"
 import {onMounted, ref} from "vue"
 import ProfilForm from "@/components/profile/ProfilForm.vue"
 import {useUserStore} from "@/stores/user.ts"
@@ -17,7 +17,7 @@ const route = useRoute()
 const router = useRouter()
 const store = useUserStore()
 
-const user:ComputedRef<User> =computed(()=>store.getUser)
+const user: ComputedRef<User> = computed(() => store.getUser)
 
 const alert = ref('')
 const alertType = ref<'success' | 'error'>('success')

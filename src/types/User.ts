@@ -1,5 +1,3 @@
-import { en } from "vuetify/locale"
-
 export enum Role {
   ANONYMOUS = 'anonymous',
   ADMIN = 'admin',

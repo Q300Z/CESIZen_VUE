@@ -1,4 +1,4 @@
-<script setup lang="ts">
+<script lang="ts" setup>
 import NavBar from "@/components/core/NavBar.vue";
 
 const drawer = ref(true)
@@ -6,17 +6,18 @@ const drawer = ref(true)
 
 <template>
   <v-app-bar density="comfortable">
-   <template #prepend>
-     <v-app-bar-nav-icon variant="text" @click.stop="drawer = !drawer" v-if="$vuetify.display.mobile"></v-app-bar-nav-icon>
-     <v-img
-       src="@/assets/cesizen_logo_small.png"
-       alt="Logo CESIZen"
-       height="100"
-       width="100"
-       contain
-     ></v-img>
+    <template #prepend>
+      <v-app-bar-nav-icon v-if="$vuetify.display.mobile" variant="text"
+                          @click.stop="drawer = !drawer"></v-app-bar-nav-icon>
+      <v-img
+        alt="Logo CESIZen"
+        contain
+        height="100"
+        src="@/assets/cesizen_logo_small.png"
+        width="100"
+      ></v-img>
 
-   </template>
+    </template>
     <v-toolbar-title>CESIZen</v-toolbar-title>
     <MenuUser/>
   </v-app-bar>
@@ -24,6 +25,6 @@ const drawer = ref(true)
   <NavBar :drawer="drawer"/>
 </template>
 
-<style scoped lang="sass">
+<style lang="sass" scoped>
 
 </style>

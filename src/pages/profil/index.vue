@@ -2,8 +2,8 @@
 import {definePage} from 'unplugin-vue-router/runtime'
 import {useRoute, useRouter} from 'vue-router'
 import axios from '@/lib/axios'
-import type {APIResponse, RouteParams, User} from '@/types'
-import {onMounted, ref} from 'vue'
+import type {APIResponse, User} from '@/types'
+import {onMounted} from 'vue'
 import {useUserStore} from '@/stores/user'
 import ProfilCard from '@/components/profile/ProfilCard.vue'
 import type {AxiosResponse} from "axios";
@@ -18,16 +18,16 @@ const route = useRoute()
 const router = useRouter()
 const store = useUserStore()
 
-const user:ComputedRef<User> = computed(() => store.getUser)
+const user: ComputedRef<User> = computed(() => store.getUser)
 
 onMounted(async () => {
-  if(!store.isLoggedIn)
+  if (!store.isLoggedIn)
     await router.push('/auth/login')
 
 
   try {
     const res: AxiosResponse<APIResponse<User>> = await axios.get(`users/${user.value.id}`)
-    if(res.status === 200 && res.data.data) {
+    if (res.status === 200 && res.data.data) {
       store.setUser(res.data.data)
     } else {
       console.error("Erreur lors de la récupération de l'utilisateur")
