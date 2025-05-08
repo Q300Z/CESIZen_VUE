@@ -30,15 +30,7 @@ const getRoleColor = (role: Role) => {
           </v-chip>
         </div>
         <v-spacer/>
-        <v-btn
-          v-role="['admin']"
-          :to="'/admin/users/edit/'+user.id"
-          prepend-icon="mdi-pencil"
-          size="small"
-          variant="tonal"
-        >
-          Modifier
-        </v-btn>
+        <slot name="action" :item="user"></slot>
       </div>
     </v-card-text>
   </v-card>

@@ -17,7 +17,7 @@ const route = useRoute()
 const router = useRouter()
 const store = useUserStore()
 
-const user = ref<User | undefined>(undefined)
+const user:ComputedRef<User> =computed(()=>store.getUser)
 
 const alert = ref('')
 const alertType = ref<'success' | 'error'>('success')
@@ -39,7 +39,7 @@ const submit = async (formData: Partial<User>) => {
 
     // Optionnel : attendre 1-2 secondes avant de rediriger
     setTimeout(() => {
-      router.push("/profile")
+      router.push("/profil")
     }, 1500)
 
   } catch (error) {
@@ -50,17 +50,9 @@ const submit = async (formData: Partial<User>) => {
 }
 
 onMounted(async () => {
-  const {id} = route.params as RouteParams
-  const userId = Number(id)
-
-  if (store.user && store.user.id === userId) {
-    user.value = store.user
-    return
-  }
-
   try {
-    const res = await axios.get(`/users/${id}`)
-    user.value = res.data.data
+    const res = await axios.get(`/users/${user.value.id}`)
+    store.setUser(res.data.data)
   } catch (error) {
     console.error("Erreur lors du chargement de l'utilisateur :", error)
     router.back()

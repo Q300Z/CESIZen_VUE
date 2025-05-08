@@ -40,7 +40,7 @@ const logout = ()=>{
         link
         prepend-icon="mdi-cog"
         title="Paramètres du compte"
-        to="/profile"
+        to="/profil"
       >
       </v-list-item>
     </v-list>

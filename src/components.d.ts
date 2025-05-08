@@ -10,9 +10,10 @@ declare module 'vue' {
   export interface GlobalComponents {
     AppBar: typeof import('./components/core/AppBar.vue')['default']
     AppFooter: typeof import('./components/AppFooter.vue')['default']
+    ArticleCard: typeof import('./components/article/ArticleCard.vue')['default']
+    ArticleForm: typeof import('./components/article/ArticleForm.vue')['default']
     HelloWorld: typeof import('./components/HelloWorld.vue')['default']
     MenuUser: typeof import('./components/profile/MenuUser.vue')['default']
-    ModalComfirmation: typeof import('./components/core/ModalComfirmation.vue')['default']
     ModalConfirmation: typeof import('./components/core/ModalConfirmation.vue')['default']
     NavBar: typeof import('./components/core/NavBar.vue')['default']
     NotFound: typeof import('./components/core/NotFound.vue')['default']

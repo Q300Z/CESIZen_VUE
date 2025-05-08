@@ -1,6 +1,6 @@
 <script setup lang="ts">
-import {useUserStore} from "@/stores/user.ts";
-import type {APIResponse, User} from "@/types";
+import {useArticleStore} from "@/stores/article.ts";
+import type {APIResponse, Article} from "@/types";
 import axios from "@/lib/axios.ts";
 import type {AxiosResponse} from "axios";
 import {definePage} from "unplugin-vue-router/runtime";
@@ -12,59 +12,58 @@ definePage({
   },
 })
 
-const store=useUserStore()
-const users:ComputedRef<User[]> = computed(()=>store.getUsers)
+const store=useArticleStore()
+const articles:ComputedRef<Article[]> = computed(()=>store.articles)
 
 const headers = [
   { title: 'ID', key: 'id' },
-  { title: "Nom d'utilisateur", key: 'name' },
-  { title: 'Courriel', key: 'email' },
-  { title: 'Rôle', key: 'role' },
+  { title: "Nom d'utilisateur", key: 'title' },
+  { title: 'Courriel', key: 'description' },
   { title: 'Date de création', key: 'created_at' },
   { title: 'Date de mise à jour', key: 'updated_at' },
   { title: 'Actions', key: 'actions', sortable: false }
 ]
 
 onMounted(async ()=>{
-  const res:AxiosResponse<APIResponse<User[]>> =await axios.get("/users")
+  const res:AxiosResponse<APIResponse<Article[]>> =await axios.get("/articles")
   if (res.status === 200){
     if (res.data.data){
-      store.setUsers(res.data.data)
+      store.setArticles(res.data.data)
     }
   }
   else{
-    console.error("Erreur lors de la récupération des utilisateurs")
+    console.error("Erreur lors de la récupération des artilces")
   }
 
 })
 
-const deleteUser = async (user:User)=>{
-  const res:AxiosResponse<APIResponse<User>> = await axios.delete(`/users/${user.id}`)
+const deleteArticle = async (article:Article)=>{
+  const res:AxiosResponse<APIResponse<Article>> = await axios.delete(`/articles/${article.id}`)
   if (res.status === 200){
-      store.removeUser(user)
+      store.removeArticle(article)
       console.log(res.data.message)
   }else{
-    console.error("Erreur lors de la suppression de utilisateur")
+    console.error("Erreur lors de la suppression de l'article")
   }
 }
 
 </script>
 
 <template>
-<v-data-table :items="users" :hide-default-footer="users.length < 11" :headers="headers">
+<v-data-table :items="articles" :hide-default-footer="articles.length < 11" :headers="headers">
   <template #top>
     <v-toolbar flat>
       <v-toolbar-title>Liste des utilisateurs</v-toolbar-title>
       <v-spacer></v-spacer>
-      <v-btn color="primary" to="/admin/users/add">Ajouter un utilisateur</v-btn>
+      <v-btn color="primary" to="/admin/infos/add">Ajouter un utilisateur</v-btn>
     </v-toolbar>
   </template>
 
   <template #item.actions="{ item }">
-    <v-btn icon :to="'/admin/users/'+item.id" variant="text">
+    <v-btn icon :to="'/admin/infos/edit/'+item.id" variant="text">
       <v-icon>mdi-pencil</v-icon>
     </v-btn>
-    <ModalConfirmation @confirm="() => deleteUser(item)" title="Confirmation de suppression">
+    <ModalConfirmation @confirm="() => deleteArticle(item)" title="Confirmation de suppression">
       <template #activation="{props}">
         <v-btn icon variant="text" v-bind="props">
           <v-icon>mdi-delete</v-icon>

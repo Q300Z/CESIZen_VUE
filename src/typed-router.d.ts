@@ -19,6 +19,10 @@ declare module 'vue-router/auto-routes' {
    */
   export interface RouteNamedMap {
     '/': RouteRecordInfo<'/', '/', Record<never, never>, Record<never, never>>,
+    '/admin/infos/': RouteRecordInfo<'/admin/infos/', '/admin/infos', Record<never, never>, Record<never, never>>,
+    '/admin/infos/[id]': RouteRecordInfo<'/admin/infos/[id]', '/admin/infos/:id', { id: ParamValue<true> }, { id: ParamValue<false> }>,
+    '/admin/infos/add/': RouteRecordInfo<'/admin/infos/add/', '/admin/infos/add', Record<never, never>, Record<never, never>>,
+    '/admin/infos/edit/[id]': RouteRecordInfo<'/admin/infos/edit/[id]', '/admin/infos/edit/:id', { id: ParamValue<true> }, { id: ParamValue<false> }>,
     '/admin/users/': RouteRecordInfo<'/admin/users/', '/admin/users', Record<never, never>, Record<never, never>>,
     '/admin/users/[id]': RouteRecordInfo<'/admin/users/[id]', '/admin/users/:id', { id: ParamValue<true> }, { id: ParamValue<false> }>,
     '/admin/users/add/': RouteRecordInfo<'/admin/users/add/', '/admin/users/add', Record<never, never>, Record<never, never>>,
@@ -27,7 +31,9 @@ declare module 'vue-router/auto-routes' {
     '/auth/forgot/': RouteRecordInfo<'/auth/forgot/', '/auth/forgot', Record<never, never>, Record<never, never>>,
     '/auth/login/': RouteRecordInfo<'/auth/login/', '/auth/login', Record<never, never>, Record<never, never>>,
     '/auth/register/': RouteRecordInfo<'/auth/register/', '/auth/register', Record<never, never>, Record<never, never>>,
-    '/profile/': RouteRecordInfo<'/profile/', '/profile', Record<never, never>, Record<never, never>>,
-    '/profile/edit/[id]': RouteRecordInfo<'/profile/edit/[id]', '/profile/edit/:id', { id: ParamValue<true> }, { id: ParamValue<false> }>,
+    '/info/': RouteRecordInfo<'/info/', '/info', Record<never, never>, Record<never, never>>,
+    '/info/[id]': RouteRecordInfo<'/info/[id]', '/info/:id', { id: ParamValue<true> }, { id: ParamValue<false> }>,
+    '/profil/': RouteRecordInfo<'/profil/', '/profil', Record<never, never>, Record<never, never>>,
+    '/profil/edit/': RouteRecordInfo<'/profil/edit/', '/profil/edit', Record<never, never>, Record<never, never>>,
   }
 }
