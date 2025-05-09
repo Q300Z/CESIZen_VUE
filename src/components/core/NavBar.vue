@@ -32,6 +32,8 @@ onMounted(() => {
                      to="/admin/users"/>
         <v-list-item v-role="['admin']" link prepend-icon="mdi-format-list-text" title="Gestion articles"
                      to="/admin/infos"/>
+        <v-list-item v-role="['admin']" link prepend-icon="mdi-emoticon-happy-outline" title="Gestion émotions"
+                     to="/admin/emotions"/>
       </v-list>
     </template>
   </v-navigation-drawer>

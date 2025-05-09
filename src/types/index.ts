@@ -3,3 +3,4 @@ export * from './AuthResponse';
 export * from './User';
 export * from './RouteParams';
 export * from './Article'
+export * from './Emotion'

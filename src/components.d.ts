@@ -12,6 +12,8 @@ declare module 'vue' {
     AppFooter: typeof import('./components/AppFooter.vue')['default']
     ArticleCard: typeof import('./components/article/ArticleCard.vue')['default']
     ArticleForm: typeof import('./components/article/ArticleForm.vue')['default']
+    EmotionCard: typeof import('./components/emotion/EmotionCard.vue')['default']
+    EmotionForm: typeof import('./components/emotion/EmotionForm.vue')['default']
     HelloWorld: typeof import('./components/HelloWorld.vue')['default']
     MenuUser: typeof import('./components/profile/MenuUser.vue')['default']
     ModalConfirmation: typeof import('./components/core/ModalConfirmation.vue')['default']
@@ -27,6 +29,8 @@ declare module 'vue' {
     StepSendEmail: typeof import('./components/auth/forgot/StepSendEmail.vue')['default']
     StepSetPassword: typeof import('./components/auth/register/StepSetPassword.vue')['default']
     StepUserInfo: typeof import('./components/auth/register/StepUserInfo.vue')['default']
+    TrackerCard: typeof import('./components/tracker/TrackerCard.vue')['default']
+    TrackerForm: typeof import('./components/tracker/TrackerForm.vue')['default']
     VListProfile: typeof import('./components/profile/VListProfile.vue')['default']
   }
 }

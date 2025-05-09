@@ -19,6 +19,12 @@ declare module 'vue-router/auto-routes' {
    */
   export interface RouteNamedMap {
     '/': RouteRecordInfo<'/', '/', Record<never, never>, Record<never, never>>,
+    '/admin/emotions/': RouteRecordInfo<'/admin/emotions/', '/admin/emotions', Record<never, never>, Record<never, never>>,
+    '/admin/emotions/add/': RouteRecordInfo<'/admin/emotions/add/', '/admin/emotions/add', Record<never, never>, Record<never, never>>,
+    '/admin/emotions/base/': RouteRecordInfo<'/admin/emotions/base/', '/admin/emotions/base', Record<never, never>, Record<never, never>>,
+    '/admin/emotions/base/add/': RouteRecordInfo<'/admin/emotions/base/add/', '/admin/emotions/base/add', Record<never, never>, Record<never, never>>,
+    '/admin/emotions/edit/[id]': RouteRecordInfo<'/admin/emotions/edit/[id]', '/admin/emotions/edit/:id', { id: ParamValue<true> }, { id: ParamValue<false> }>,
+    '/admin/emotions/edit/base/[id]': RouteRecordInfo<'/admin/emotions/edit/base/[id]', '/admin/emotions/edit/base/:id', { id: ParamValue<true> }, { id: ParamValue<false> }>,
     '/admin/infos/': RouteRecordInfo<'/admin/infos/', '/admin/infos', Record<never, never>, Record<never, never>>,
     '/admin/infos/[id]': RouteRecordInfo<'/admin/infos/[id]', '/admin/infos/:id', { id: ParamValue<true> }, { id: ParamValue<false> }>,
     '/admin/infos/add/': RouteRecordInfo<'/admin/infos/add/', '/admin/infos/add', Record<never, never>, Record<never, never>>,
@@ -35,5 +41,6 @@ declare module 'vue-router/auto-routes' {
     '/info/[id]': RouteRecordInfo<'/info/[id]', '/info/:id', { id: ParamValue<true> }, { id: ParamValue<false> }>,
     '/profil/': RouteRecordInfo<'/profil/', '/profil', Record<never, never>, Record<never, never>>,
     '/profil/edit/': RouteRecordInfo<'/profil/edit/', '/profil/edit', Record<never, never>, Record<never, never>>,
+    '/tracker/': RouteRecordInfo<'/tracker/', '/tracker', Record<never, never>, Record<never, never>>,
   }
 }
