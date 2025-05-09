@@ -10,7 +10,7 @@ const emit = defineEmits<{
 </script>
 
 <template>
-  <v-dialog>
+  <v-dialog scrim>
     <template v-slot:activator="{ props: activatorProps }">
       <slot :props="activatorProps" name="activation">
         <v-btn v-bind="activatorProps">
@@ -20,7 +20,8 @@ const emit = defineEmits<{
     </template>
 
     <template v-slot:default="{ isActive }">
-      <v-card>
+      <div class="d-flex justify-center">
+      <v-card max-width="800">
         <v-card-title>
           <slot name="titre">{{ props.title }}</slot> <!-- Utilisation de la prop title -->
         </v-card-title>
@@ -45,6 +46,7 @@ const emit = defineEmits<{
           </v-btn>
         </v-card-actions>
       </v-card>
+      </div>
     </template>
   </v-dialog>
 </template>

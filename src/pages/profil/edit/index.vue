@@ -48,20 +48,10 @@ const submit = async (formData: Partial<User>) => {
     alertType.value = 'error'
   }
 }
-
-onMounted(async () => {
-  try {
-    const res = await axios.get(`/users/${user.value.id}`)
-    store.setUser(res.data.data)
-  } catch (error) {
-    console.error("Erreur lors du chargement de l'utilisateur :", error)
-    router.back()
-  }
-})
 </script>
 
 <template>
-  <div>
+  <v-container>
     <h1 class="text-h5 mb-4">Modification du profil</h1>
 
     <v-alert
@@ -78,7 +68,7 @@ onMounted(async () => {
 
     <v-card v-if="!user" title="Chargement du profil..."></v-card>
     <ProfilForm v-else :model-value="user" @submit="submit"/>
-  </div>
+  </v-container>
 </template>
 
 <style scoped>

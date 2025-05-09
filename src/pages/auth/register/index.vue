@@ -52,7 +52,7 @@ const submit = () => {
   loading.value = true;
   axios.post('register', {
     email: email.value,
-    name: nom.value,
+    username: nom.value,
     password: password.value,
   }).then((response: AxiosResponse<APIResponse<AuthResponse>>) => {
     if (response.status === 200 && response.data.data) {

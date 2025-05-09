@@ -17,9 +17,9 @@ const emotion: Ref<EmotionBase | undefined> = ref()
 const alert = ref('')
 const alertType = ref<'success' | 'error'>('success')
 
-const submit = async (formData: Partial<Emotion>) => {
+const submit = async (formData: FormData) => {
   try {
-    let res = await axios.post('/emotions', formData)
+    let res = await axios.post('/emotions', formData, {headers: {'Content-Type': 'multipart/form-data'}})
 
     console.log("Emotion créé :", res.data.data)
 
@@ -39,8 +39,8 @@ const submit = async (formData: Partial<Emotion>) => {
 </script>
 
 <template>
-  <div>
-    <h1 class="text-h5 mb-4">Ajout d’un emotion de base</h1>
+  <v-container>
+    <h1 class="text-h5 mb-4">Ajout d’une emotion de base</h1>
 
     <v-alert
       v-if="alert"
@@ -54,7 +54,7 @@ const submit = async (formData: Partial<Emotion>) => {
       {{ alert }}
     </v-alert>
     <EmotionForm :model-value="emotion" @submit="submit" :base="true"/>
-  </div>
+  </v-container>
 </template>
 
 <style scoped>

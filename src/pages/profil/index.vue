@@ -14,35 +14,16 @@ definePage({
   },
 })
 
-const route = useRoute()
-const router = useRouter()
 const store = useUserStore()
 
 const user: ComputedRef<User> = computed(() => store.getUser)
 
-onMounted(async () => {
-  if (!store.isLoggedIn)
-    await router.push('/auth/login')
-
-
-  try {
-    const res: AxiosResponse<APIResponse<User>> = await axios.get(`users/${user.value.id}`)
-    if (res.status === 200 && res.data.data) {
-      store.setUser(res.data.data)
-    } else {
-      console.error("Erreur lors de la récupération de l'utilisateur")
-    }
-  } catch (err) {
-    console.error(`Utilisateur avec l'ID ${user.value.id} introuvable`, err)
-    router.back()
-  }
-})
 </script>
 
 <template>
-  <div class="d-flex flex-column ga-5 align-center">
+  <v-container class="d-flex flex-column ga-5 align-center">
     <v-card v-if="!user" title="Chargement du profil..."></v-card>
-    <ProfilCard v-else :user="user">
+    <ProfilCard v-else :user="user" class="w-sm-100 w-md-66">
       <template #action="{item}">
         <v-btn
           :to="'/profil/edit/'"
@@ -54,7 +35,7 @@ onMounted(async () => {
         </v-btn>
       </template>
     </ProfilCard>
-  </div>
+  </v-container>
 </template>
 
 <style lang="sass" scoped>

@@ -3,8 +3,9 @@ import { definePage } from "unplugin-vue-router/runtime";
 import { useRoute, useRouter } from "vue-router";
 import { onMounted, ref } from "vue";
 import axios from "@/lib/axios";
-import type { Emotion, EmotionBase, RouteParams } from "@/types";
+import type {APIResponse, Emotion, EmotionBase, RouteParams} from "@/types";
 import { useEmotionStore } from "@/stores/emotion.ts";
+import type {AxiosResponse} from "axios";
 
 definePage({
   meta: {
@@ -22,9 +23,11 @@ const emotion = ref<Partial<Emotion>>({});
 const alert = ref("");
 const alertType = ref<"success" | "error">("success");
 
-const submit = async (formData: Partial<Emotion>) => {
+const submit = async (formData: FormData) => {
   try {
-      const res = await axios.put(`/emotions/${formData.id}`, formData);
+      const res = await axios.put(`/emotions/${emotion.value.id}`, formData, {
+        headers: { "Content-Type": "multipart/form-data" },
+      });
       store.updateEmotion(res.data.data);
       alert.value = "Émotion mise à jour avec succès.";
 
@@ -44,10 +47,14 @@ onMounted(async () => {
   if (id) {
     try {
       emotion.value = store.getEmotionById(Number(id))|| {};
-      if (emotion.value) {
-        const res = await axios.get(`/emotions/${id}`);
-        emotion.value = res.data.data;
-        store.updateEmotion(res.data.data);
+
+      if (!emotion.value.id) {
+        const res:AxiosResponse<APIResponse<Emotion>> = await axios.get(`/emotions/${id}`);
+        if(res.status === 200 && res.data.data) {
+          emotion.value = res.data.data;
+          store.updateEmotion(res.data.data);
+        }
+
       }
     } catch (error) {
       console.error("Erreur lors du chargement de l'émotion :", error);
@@ -58,7 +65,7 @@ onMounted(async () => {
 </script>
 
 <template>
-  <div>
+  <v-container>
      <v-alert
       v-if="alert"
       :type="alertType"
@@ -77,5 +84,5 @@ onMounted(async () => {
       :model-value="emotion"
       @submit="submit"
     />
-  </div>
+  </v-container>
 </template>

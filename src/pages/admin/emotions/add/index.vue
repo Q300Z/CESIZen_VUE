@@ -19,13 +19,13 @@ const alertType = ref<'success' | 'error'>('success')
 
 const base:Ref<boolean> = ref(false)
 
-const submit = async (formData: Partial<Emotion>) => {
+const submit = async (formData: FormData) => {
   try {
     let res=null;
     if(base)
-     res = await axios.post('/emotions', formData)
+     res = await axios.post('/emotions', formData, {headers: {'Content-Type': 'multipart/form-data'}})
     else
-     res = await axios.post('/emotions/base', formData)
+     res = await axios.post('/emotions/base', formData, {headers: {'Content-Type': 'multipart/form-data'}})
 
     console.log("Emotion créé :", res.data.data)
 
@@ -34,7 +34,7 @@ const submit = async (formData: Partial<Emotion>) => {
 
     setTimeout(() => {
       router.push(`/admin/emotions`)
-    }, 1500)
+    }, 50)
 
   } catch (error) {
     console.error("Erreur lors de la création de l'emotion :", error)
@@ -45,8 +45,8 @@ const submit = async (formData: Partial<Emotion>) => {
 </script>
 
 <template>
-  <div>
-    <h1 class="text-h5 mb-4">Ajout d’un emotion</h1>
+  <v-container>
+    <h1 class="text-h5 mb-4">Ajout d’une emotion</h1>
 
     <v-alert
       v-if="alert"
@@ -61,7 +61,7 @@ const submit = async (formData: Partial<Emotion>) => {
     </v-alert>
     <v-switch label="Emotion de base ?" color="primary" inset v-model="base"></v-switch>
     <EmotionForm :model-value="emotion" @submit="submit" :base="base"/>
-  </div>
+  </v-container>
 </template>
 
 <style scoped>

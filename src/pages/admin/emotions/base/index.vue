@@ -45,10 +45,10 @@ onMounted(async () => {
   }
 });
 
-const deleteEmotion = async (emotion: Emotion) => {
+const deleteEmotion = async (emotion: EmotionBase) => {
   const res: AxiosResponse<APIResponse<Emotion>> = await axios.delete(`/emotions/base/${emotion.id}`);
   if (res.status === 200) {
-    store.removeEmotion(emotion);
+    store.removeEmotionBase(emotion);
     console.log(res.data.message);
   } else {
     console.error("Erreur lors de la suppression de l'émotion");

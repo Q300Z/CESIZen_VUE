@@ -12,7 +12,6 @@ declare module 'vue' {
     AppFooter: typeof import('./components/AppFooter.vue')['default']
     ArticleCard: typeof import('./components/article/ArticleCard.vue')['default']
     ArticleForm: typeof import('./components/article/ArticleForm.vue')['default']
-    EmotionCard: typeof import('./components/emotion/EmotionCard.vue')['default']
     EmotionForm: typeof import('./components/emotion/EmotionForm.vue')['default']
     HelloWorld: typeof import('./components/HelloWorld.vue')['default']
     MenuUser: typeof import('./components/profile/MenuUser.vue')['default']

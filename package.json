@@ -4,9 +4,9 @@
   "type": "module",
   "version": "0.0.0",
   "scripts": {
-    "dev": "vite",
+    "dev": "vite --host",
     "build": "run-p type-check \"build-only {@}\" --",
-    "preview": "vite preview",
+    "preview": "vite preview --host --port 3000",
     "build-only": "vite build && npx cap sync",
     "type-check": "vue-tsc --build --force",
     "lint": "eslint . --fix"
@@ -23,6 +23,7 @@
     "vuetify": "^3.8.4"
   },
   "devDependencies": {
+    "@capacitor/assets": "^3.0.5",
     "@capacitor/cli": "^7.2.0",
     "@tsconfig/node22": "^22.0.1",
     "@types/node": "^22.15.17",

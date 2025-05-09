@@ -41,7 +41,7 @@ onMounted(async () => {
 </script>
 
 <template>
-  <div class="d-flex flex-column ga-5 align-center">
+  <v-container class="d-flex flex-column ga-5 align-center">
     <v-card v-if="!user" title="Chargement du profil..."></v-card>
     <ProfilCard v-else :user="user">
       <template #action="{item}">
@@ -56,7 +56,7 @@ onMounted(async () => {
         </v-btn>
       </template>
     </ProfilCard>
-  </div>
+  </v-container>
 </template>
 
 <style lang="sass" scoped>

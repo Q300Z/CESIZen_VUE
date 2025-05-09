@@ -22,9 +22,11 @@ const emotion = ref<Partial<EmotionBase>>({});
 const alert = ref("");
 const alertType = ref<"success" | "error">("success");
 
-const submit = async (formData: Partial<EmotionBase>) => {
+const submit = async (formData: FormData) => {
   try {
-    const res = await axios.put(`/emotions/${formData.id}`, formData);
+    const res = await axios.put(`/emotions/${emotion.value.id}`, formData, {
+      headers: { "Content-Type": "multipart/form-data" },
+    });
     store.updateEmotionBase(res.data.data);
     alert.value = "Émotion mise à jour avec succès.";
 
@@ -58,7 +60,7 @@ onMounted(async () => {
 </script>
 
 <template>
-  <div>
+  <v-container>
     <v-alert
       v-if="alert"
       :type="alertType"
@@ -78,5 +80,5 @@ onMounted(async () => {
       :base="true"
       @submit="submit"
     />
-  </div>
+  </v-container>
 </template>

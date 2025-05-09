@@ -39,7 +39,7 @@ onMounted(async () => {
 </script>
 
 <template>
-  <div class="d-flex flex-column ga-5 align-center">
+  <v-container class="d-flex flex-column ga-5 align-center">
     <v-card v-if="!article" title="Chargement de l'article..."></v-card>
     <ArticleCard v-else :article="article" class="w-sm-100 w-md-66">
       <template #action="{item}">
@@ -54,7 +54,7 @@ onMounted(async () => {
         </v-btn>
       </template>
     </ArticleCard>
-  </div>
+  </v-container>
 </template>
 
 <style lang="sass" scoped>

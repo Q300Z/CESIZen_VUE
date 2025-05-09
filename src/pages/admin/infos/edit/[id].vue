@@ -61,7 +61,7 @@ onMounted(async () => {
 </script>
 
 <template>
-  <div>
+  <v-container>
     <h1 class="text-h5 mb-4">Modification du profil</h1>
 
     <v-alert
@@ -77,7 +77,7 @@ onMounted(async () => {
     </v-alert>
     <v-card v-if="!article" title="Chargement de l'article..."></v-card>
     <ArticleForm v-else :model-value="article" @submit="submit"/>
-  </div>
+  </v-container>
 </template>
 
 <style scoped>

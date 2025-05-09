@@ -40,7 +40,7 @@ const submit = async (formData: Partial<User>) => {
 </script>
 
 <template>
-  <div>
+  <v-container>
     <h1 class="text-h5 mb-4">Ajout d’un utilisateur</h1>
 
     <v-alert
@@ -56,7 +56,7 @@ const submit = async (formData: Partial<User>) => {
     </v-alert>
 
     <ProfilForm :model-value="user" @submit="submit"/>
-  </div>
+  </v-container>
 </template>
 
 <style scoped>
