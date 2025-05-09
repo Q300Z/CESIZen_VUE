@@ -34,7 +34,7 @@ const submit = async (formData: FormData) => {
 
     setTimeout(() => {
       router.push(`/admin/emotions`)
-    }, 50)
+    }, 500)
 
   } catch (error) {
     console.error("Erreur lors de la création de l'emotion :", error)
