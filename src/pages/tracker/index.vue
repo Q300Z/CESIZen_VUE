@@ -60,7 +60,7 @@ onMounted(async () => {
           >
             <TrackerCard :tracker="tracker.raw">
               <template #action="{item}">
-                <v-btn :to="`/tracker/${item.id}`" color="primary">Lire la suite</v-btn>
+                <v-btn :to="`/tracker/${item.id}`" color="primary">Détails</v-btn>
               </template>
             </TrackerCard>
 

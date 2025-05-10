@@ -55,7 +55,7 @@ const submit = () => {
     username: nom.value,
     password: password.value,
   }).then((response: AxiosResponse<APIResponse<AuthResponse>>) => {
-    if (response.status === 200 && response.data.data) {
+    if (response.status === 201 && response.data.data) {
       store.setToken(response.data.data.token);
       store.setUser(response.data.data.user);
       alertMessage.value = 'Inscription réussie 🎉';
