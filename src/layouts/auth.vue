@@ -16,8 +16,8 @@
         ></v-img>
         </RouterLink>
       </template>
-      <v-btn to="/auth/login">Connexion</v-btn>
-      <v-btn to="/auth/register">Inscription</v-btn>
+      <v-btn to="/auth/login" v-if="!$vuetify.display.mobile">Connexion</v-btn>
+      <v-btn to="/auth/register" v-if="!$vuetify.display.mobile">Inscription</v-btn>
       <v-spacer></v-spacer>
     </v-app-bar>
     <div class="pa-5 d-flex flex-column align-center justify-center h-75">
