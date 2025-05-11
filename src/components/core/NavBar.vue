@@ -15,7 +15,7 @@ onMounted(() => {
 <template>
   <v-navigation-drawer
     v-model="_drawer"
-    :temporary="$vuetify.display.mobile"
+    :permanent="!$vuetify.display.mobile"
   >
     <template #prepend>
       <v-list>
