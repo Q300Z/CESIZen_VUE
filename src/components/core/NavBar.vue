@@ -28,6 +28,8 @@ onMounted(() => {
     <template #append>
       <v-divider></v-divider>
       <v-list>
+        <v-list-item v-role="['user','admin']" link prepend-icon="mdi-emoticon-happy-outline" title="Statistiques Tracker"
+                     to="/tracker/report"/>
         <v-list-item v-role="['admin']" link prepend-icon="mdi-account-group" title="Gestion utilisateurs"
                      to="/admin/users"/>
         <v-list-item v-role="['admin']" link prepend-icon="mdi-format-list-text" title="Gestion articles"
