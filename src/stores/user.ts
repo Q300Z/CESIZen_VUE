@@ -59,6 +59,7 @@ export const useUserStore = defineStore('auth', {
     logout() {
       this.token = null
       this.user = DEFAULT_USER
+      window.localStorage.clear()
     }
   },
 })

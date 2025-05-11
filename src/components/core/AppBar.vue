@@ -1,7 +1,7 @@
 <script lang="ts" setup>
 import NavBar from "@/components/core/NavBar.vue";
 
-const drawer = ref(true)
+const drawer = ref(false)
 </script>
 
 <template>

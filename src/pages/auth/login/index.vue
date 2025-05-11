@@ -1,7 +1,7 @@
 <script lang="ts" setup>
-import {ref} from 'vue';
+import {ref, onMounted} from 'vue';
 import {definePage} from 'unplugin-vue-router/runtime';
-import {useUserStore} from '@/stores/user.ts'
+import {useUserStore} from '@/stores/user.ts';
 import type {APIResponse, AuthResponse} from "@/types";
 import axios from "@/lib/axios.ts";
 import type {AxiosResponse} from "axios";
@@ -11,14 +11,17 @@ definePage({
     layout: 'auth',
     requiresAuth: false,
   },
-})
+});
+
 const store = useUserStore();
-const router = useRouter()
+const router = useRouter();
+
 onMounted(() => {
   if (store.isLoggedIn) {
     router.push({name: '/'});
   }
-})
+});
+
 const formValid = ref(false);
 const email = ref('');
 const emailRules = ref([
@@ -31,22 +34,26 @@ const passwordRules = ref([
   (v: string) => !!v || 'Le mot de passe est requis',
 ]);
 
+const errorMessage = ref('');
+
 const submit = async () => {
-  await axios.post('login', {
-    email: email.value,
-    password: password.value,
-  }).then((response: AxiosResponse<APIResponse<AuthResponse>>) => {
+  errorMessage.value = ''; // reset avant tentative
+  try {
+    const response: AxiosResponse<APIResponse<AuthResponse>> = await axios.post('login', {
+      email: email.value,
+      password: password.value,
+    });
+
     if (response.status === 200 && response.data.data) {
-      const store = useUserStore();
       store.setToken(response.data.data.token);
       store.setUser(response.data.data.user);
       router.push({name: '/'});
     }
-  }).catch((error) => {
+  } catch (error: any) {
     console.error('Erreur lors de la connexion:', error);
-  })
+    errorMessage.value = error?.response?.data?.message || 'Erreur lors de la connexion. Veuillez vérifier vos identifiants.';
+  }
 };
-
 </script>
 
 <template>
@@ -54,9 +61,32 @@ const submit = async () => {
     <template #text>
       <div class="d-flex flex-column ga-3">
         <v-form v-model="formValid">
-          <v-text-field v-model="email" :rules="emailRules" autocomplete="username" label="Email" type="email"/>
-          <v-text-field v-model="password" :rules="passwordRules" autocomplete="current-password" label="Mot de passe"
-                        type="password"/>
+          <v-alert
+            v-if="errorMessage"
+            type="error"
+            variant="outlined"
+            class="mb-4"
+            dismissible
+            @click:close="errorMessage = ''"
+          >
+            {{ errorMessage }}
+          </v-alert>
+
+          <v-text-field
+            v-model="email"
+            :rules="emailRules"
+            autocomplete="username"
+            label="Email"
+            type="email"
+          />
+          <v-text-field
+            v-model="password"
+            :rules="passwordRules"
+            autocomplete="current-password"
+            label="Mot de passe"
+            type="password"
+          />
+
           <div class="d-flex flex-column ga-2">
             <v-btn block variant="text" @click="router.push({ name: '/auth/forgot/' })">
               Oubli de mot de passe
@@ -74,6 +104,5 @@ const submit = async () => {
   </v-card>
 </template>
 
-<style lang="sass" scoped>
-
+<style scoped>
 </style>

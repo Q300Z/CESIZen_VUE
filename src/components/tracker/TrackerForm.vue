@@ -81,6 +81,16 @@ onMounted(async () => {
       <v-img :src="image" height="200" width="200" v-if="image"></v-img>
       <h1>{{getEmotion?.name}}</h1>
     </div>
+
+    <v-alert
+      v-if="emotions.length === 0"
+      type="warning"
+      variant="outlined"
+      class="mt-4"
+      border="start"
+    >
+      Aucune émotion n’est disponible. Veuillez configurer des émotions dans l’administration ou réessayer plus tard.
+    </v-alert>
 <!--      <v-combobox-->
 <!--      v-model="form.emotionID"-->
 <!--      :items="emotions"-->
@@ -91,6 +101,7 @@ onMounted(async () => {
 <!--      :return-object="false"-->
 <!--    />-->
     <v-slider
+      v-if="emotions.length > 0"
       :max="emotions.length-1"
       step="1"
       tick-size="3"
@@ -105,9 +116,9 @@ onMounted(async () => {
       </template>
     </v-slider>
 
-    <v-textarea v-model="form.description" auto-grow counter label="Explique ton émotion..."></v-textarea>
+    <v-textarea v-model="form.description" auto-grow counter label="Explique ton émotion..." v-if="emotions.length > 0"></v-textarea>
 
-    <v-btn class="mt-4" color="primary" type="submit" :disabled="sliderIndex==-1">Valider</v-btn>
+    <v-btn class="mt-4" color="primary" type="submit" :disabled="sliderIndex === -1" v-if="emotions.length > 0">Valider</v-btn>
   </v-form>
 </template>
 
