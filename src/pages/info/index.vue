@@ -43,22 +43,15 @@ onMounted(async () => {
       items-per-page="6"
     >
       <template #default="{ items }">
-        <v-row>
-          <v-col
-            v-for="article in items"
-            :key="article.raw.id"
-            cols="12"
-            md="4"
-            sm="6"
-          >
-            <ArticleCard :article="article.raw">
+        <div class="d-flex justify-center flex-wrap ga-6">
+          <div v-for="article in items" :key="article.raw.id" style="width: 300px; max-height: 300px">
+            <ArticleCard :article="article.raw" >
               <template #action="{item}">
                 <v-btn :to="`/info/${item.id}`" color="primary">Lire la suite</v-btn>
               </template>
             </ArticleCard>
-
-          </v-col>
-        </v-row>
+          </div>
+          </div>
       </template>
 
       <template #no-data>
