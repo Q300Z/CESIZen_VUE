@@ -16,6 +16,8 @@ jobs:
 
     env:
       NODE_ENV: ${{ github.ref == 'refs/heads/main' && 'production' || 'development' }}
+      VITE_API_URL: https://cesizen-api.qalpuch.cc/v1
+
 
     steps:
       - name: Checkout source
@@ -36,6 +38,7 @@ jobs:
         run: npm run build
         env:
           NODE_ENV: ${{ env.NODE_ENV }}
+          VITE_API_URL: ${{ env.VITE_API_URL }}
 
       - name: Add Android folder if not present
         run: if [ ! -d "./android" ]; then npx cap add android; fi
@@ -128,6 +131,7 @@ jobs:
       TAG: ${{ github.ref == 'refs/heads/main' && 'latest' || 'dev' }}
       REGISTRY: ghcr.io
       IMAGE_NAME: q300z/cesizen-vue
+      VITE_API_URL: https://cesizen-api.qalpuch.cc/v1
 
     concurrency:
       group: build-docker-${{ github.ref }}
@@ -153,7 +157,7 @@ jobs:
           file: ./Dockerfile
           push: true
           tags: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:${{ env.TAG }}
-          build-args: NODE_ENV=${{ env.NODE_ENV }}
+          build-args: NODE_ENV=${{ env.NODE_ENV }},VITE_API_URL=${{ env.VITE_API_URL }}
           cache-from: type=gha
 
 
