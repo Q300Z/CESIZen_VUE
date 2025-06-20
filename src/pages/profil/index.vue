@@ -33,6 +33,13 @@ const user: ComputedRef<User> = computed(() => store.getUser)
         >
           Modifier
         </v-btn>
+        <v-btn
+          :to="'/profil/delete/'"
+          prepend-icon="mdi-delete"
+          size="small"
+          variant="tonal"
+          color="red"
+        >Supprimer le compte</v-btn>
       </template>
     </ProfilCard>
   </v-container>

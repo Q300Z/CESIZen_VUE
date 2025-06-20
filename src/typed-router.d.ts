@@ -19,6 +19,7 @@ declare module 'vue-router/auto-routes' {
    */
   export interface RouteNamedMap {
     '/': RouteRecordInfo<'/', '/', Record<never, never>, Record<never, never>>,
+    '/[...path]': RouteRecordInfo<'/[...path]', '/:path(.*)', { path: ParamValue<true> }, { path: ParamValue<false> }>,
     '/admin/emotions/': RouteRecordInfo<'/admin/emotions/', '/admin/emotions', Record<never, never>, Record<never, never>>,
     '/admin/emotions/add/': RouteRecordInfo<'/admin/emotions/add/', '/admin/emotions/add', Record<never, never>, Record<never, never>>,
     '/admin/emotions/base/': RouteRecordInfo<'/admin/emotions/base/', '/admin/emotions/base', Record<never, never>, Record<never, never>>,
@@ -40,6 +41,7 @@ declare module 'vue-router/auto-routes' {
     '/info/': RouteRecordInfo<'/info/', '/info', Record<never, never>, Record<never, never>>,
     '/info/[id]': RouteRecordInfo<'/info/[id]', '/info/:id', { id: ParamValue<true> }, { id: ParamValue<false> }>,
     '/profil/': RouteRecordInfo<'/profil/', '/profil', Record<never, never>, Record<never, never>>,
+    '/profil/delete/': RouteRecordInfo<'/profil/delete/', '/profil/delete', Record<never, never>, Record<never, never>>,
     '/profil/edit/': RouteRecordInfo<'/profil/edit/', '/profil/edit', Record<never, never>, Record<never, never>>,
     '/tracker/': RouteRecordInfo<'/tracker/', '/tracker', Record<never, never>, Record<never, never>>,
     '/tracker/[id]': RouteRecordInfo<'/tracker/[id]', '/tracker/:id', { id: ParamValue<true> }, { id: ParamValue<false> }>,
