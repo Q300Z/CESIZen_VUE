@@ -91,30 +91,30 @@ onMounted(async () => {
     >
       Aucune émotion n’est disponible. Veuillez configurer des émotions dans l’administration ou réessayer plus tard.
     </v-alert>
-<!--      <v-combobox-->
-<!--      v-model="form.emotionID"-->
-<!--      :items="emotions"-->
-<!--      item-title="name"-->
-<!--      item-value="id"-->
-<!--      label="Emotion"-->
-<!--      required-->
-<!--      :return-object="false"-->
+      <v-combobox
+      v-model="form.emotionID"
+      :items="emotions"
+      item-title="name"
+      item-value="id"
+      label="Emotion"
+      required
+      :return-object="false"/>
 <!--    />-->
-    <v-slider
-      v-if="emotions.length > 0"
-      :max="emotions.length-1"
-      step="1"
-      tick-size="3"
-      show-ticks
-      v-model="sliderIndex"
-      color="primary"
-      thumb-label
-      class="mt-10"
-    >
-      <template v-slot:thumb-label="{ modelValue }">
-        {{ emotions[modelValue].name }}
-      </template>
-    </v-slider>
+<!--    <v-slider-->
+<!--      v-if="emotions.length > 0"-->
+<!--      :max="emotions.length-1"-->
+<!--      step="1"-->
+<!--      tick-size="3"-->
+<!--      show-ticks-->
+<!--      v-model="sliderIndex"-->
+<!--      color="primary"-->
+<!--      thumb-label-->
+<!--      class="mt-10"-->
+<!--    >-->
+<!--      <template v-slot:thumb-label="{ modelValue }">-->
+<!--        {{ emotions[modelValue].name }}-->
+<!--      </template>-->
+<!--    </v-slider>-->
 
     <v-textarea v-model="form.description" auto-grow counter label="Explique ton émotion..." v-if="emotions.length > 0"></v-textarea>
 

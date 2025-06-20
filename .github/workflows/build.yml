@@ -1,34 +1,161 @@
-name: Build Project
+name: Build All (Docker + Android)
 
 on:
   push:
     branches:
       - main
-  pull_request:
-    branches:
-      - main
+      - dev
 
 jobs:
-  build:
+  build-android:
+    name: Build Android App
     runs-on: ubuntu-latest
+    concurrency:
+      group: build-android-${{ github.ref }}
+      cancel-in-progress: true
+
+    env:
+      NODE_ENV: ${{ github.ref == 'refs/heads/main' && 'production' || 'development' }}
 
     steps:
-      - name: Checkout code
+      - name: Checkout source
         uses: actions/checkout@v4
 
-      - name: Set up Node.js
+      - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
           node-version: '22'
 
       - name: Install dependencies
-        run: npm install
+        run: NODE_ENV=development npm ci
 
-      - name: Build project
+      - name: Show dependencies
+        run: npm fund
+
+      - name: Build web app
         run: npm run build
+        env:
+          NODE_ENV: ${{ env.NODE_ENV }}
 
-      - name: Upload build artifacts
+      - name: Add Android folder if not present
+        run: if [ ! -d "./android" ]; then npx cap add android; fi
+
+      - name: Capacitor sync
+        run: npx cap sync android
+
+      - name: Generate icons and splash screen
+        run: |
+          if [ -d "./resources" ]; then
+            npm install @capacitor/assets --save-dev
+            npx capacitor-assets generate --android
+          fi
+
+      - name: Setup Java
+        uses: actions/setup-java@v4
+        with:
+          distribution: 'oracle'
+          java-version: "22"
+          cache: 'gradle'
+
+      - name: Extract Android signing key
+        run: |
+          echo "${{ secrets.RELEASE_KEYSTORE }}" | base64 -d > android/release.decrypted.jks
+
+      - name: Verify extracted keystore
+        run: |
+          keytool -list -v \
+            -keystore android/release.decrypted.jks \
+            -storepass "${{ secrets.RELEASE_KEYSTORE_PASSWORD }}"
+
+      - name: Build Android App
+        run: |
+          cd android
+          if [ "${{ github.ref }}" = "refs/heads/main" ]; then
+            ./gradlew assembleRelease
+          else
+            ./gradlew assembleDebug
+          fi
+      - name: List built files
+        run: |
+          if [ "${{ github.ref }}" = "refs/heads/main" ]; then
+            ls -lh ./android/app/build/outputs/apk/release
+          else
+            ls -lh ./android/app/build/outputs/apk/debug
+          fi
+
+      #      - name: Align APK with zipalign
+      #        run: |
+      #          BUILDTOOLS=$ANDROID_HOME/build-tools/$(ls $ANDROID_HOME/build-tools | sort -V | tail -n 1)
+      #          ZIPALIGNED=./android/app/build/outputs/apk/release/app-release-aligned.apk
+      #          $BUILDTOOLS/zipalign -v -p 4 ./android/app/build/outputs/apk/release/app-release.apk $ZIPALIGNED
+      #          mv $ZIPALIGNED ./android/app/build/outputs/apk/release/app-release.apk
+
+      #      - name: Verify APK Signature
+      #        run: |
+      #          BUILDTOOLS=$ANDROID_HOME/build-tools/$(ls $ANDROID_HOME/build-tools | sort -V | tail -n 1)
+      #          $BUILDTOOLS/apksigner verify ./android/app/build/outputs/apk/release/app-release.apk
+
+      - name: Cleanup Android signing files
+        run: rm -f android/release.jks.base64 android/release.decrypted.jks
+
+      - name: Generate release tag
+        id: tag
+        run: echo "tag=android-${{ env.NODE_ENV }}-$(date +'%Y%m%d-%H%M%S')" >> $GITHUB_OUTPUT
+
+      - name: APK Release Artifact
+        if: github.ref == 'refs/heads/main'
         uses: actions/upload-artifact@v4
         with:
-          name: build
-          path: dist
+          name: app-release-signed.apk
+          path: ./android/app/build/outputs/apk/release/app-release.apk
+
+      - name: APK Debug Artifact
+        if: github.ref != 'refs/heads/main'
+        uses: actions/upload-artifact@v4
+        with:
+          name: app-debug.apk
+          path: ./android/app/build/outputs/apk/debug/app-debug.apk
+
+  build-docker:
+    name: Build Docker Image
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      packages: write
+
+    env:
+      NODE_ENV: ${{ github.ref == 'refs/heads/main' && 'production' || 'development' }}
+      TAG: ${{ github.ref == 'refs/heads/main' && 'latest' || 'dev' }}
+      REGISTRY: ghcr.io
+      IMAGE_NAME: q300z/cesizen-vue
+
+    concurrency:
+      group: build-docker-${{ github.ref }}
+      cancel-in-progress: true
+    steps:
+      - name: Checkout source
+        uses: actions/checkout@v4
+
+      - name: Log in to GitHub Container Registry
+        uses: docker/login-action@v3
+        with:
+          registry: ${{ env.REGISTRY }}
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v3
+
+      - name: Build and push Docker image
+        uses: docker/build-push-action@v5
+        with:
+          context: .
+          file: ./Dockerfile
+          push: true
+          tags: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:${{ env.TAG }}
+          build-args: NODE_ENV=${{ env.NODE_ENV }}
+          cache-from: type=gha
+
+
+      - name: Image pushed successfully
+        run: echo "✅ Image ${{ env.TAG }} pushed to ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}"

@@ -7,7 +7,7 @@
     "dev": "vite --host",
     "build": "run-p type-check \"build-only {@}\" --",
     "preview": "vite preview --host --port 3000",
-    "build-only": "vite build && npx cap sync",
+    "build-only": "vite build",
     "type-check": "vue-tsc --build --force",
     "lint": "eslint . --fix"
   },

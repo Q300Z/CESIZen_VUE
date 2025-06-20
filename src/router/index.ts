@@ -7,7 +7,6 @@
 // Composables
 import {
   createRouter,
-  createWebHistory,
   type NavigationGuardNext,
   type RouteLocationNormalized,
   type RouteLocationNormalizedLoaded
@@ -15,16 +14,12 @@ import {
 import {setupLayouts} from 'virtual:generated-layouts'
 import {routes} from 'vue-router/auto-routes'
 import {useUserStore} from '@/stores/user'
-import NotFound from '@/components/core/NotFound.vue'
+import {createWebHashHistory} from "vue-router";
 
 const router = createRouter({
-  history: createWebHistory(import.meta.env.BASE_URL),
+  history: createWebHashHistory(import.meta.env.BASE_URL),
   routes: setupLayouts([
     ...routes,
-    {
-      path: '/:pathMatch(.*)*', // Cela attrape toutes les routes non définies
-      component: NotFound,
-    },
   ]),
 })
 

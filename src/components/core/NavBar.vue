@@ -5,7 +5,7 @@ const props = defineProps<{
 watch(() => props.drawer, val => {
   _drawer.value = !_drawer.value
 })
-const _drawer = ref(false)
+const _drawer = ref(true)
 
 onMounted(() => {
   _drawer.value = props.drawer
