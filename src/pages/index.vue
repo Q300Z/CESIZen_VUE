@@ -46,7 +46,7 @@ onMounted(async () => {
     if (res.status === 200 && res.data.data) {
       store.setTrackers(res.data.data)
     }
-  } catch (error: unknown) {
+  } catch (error: any) {
     if (error.response?.status === 403) {
       console.warn("Erreur 403 : accès refusé. Redirection...")
       userStore.logout()

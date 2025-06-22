@@ -49,7 +49,7 @@ const submit = async () => {
       store.setUser(response.data.data.user);
       router.push({name: '/'});
     }
-  } catch (error: unknown) {
+  } catch (error: any) {
     console.error('Erreur lors de la connexion:', error);
     errorMessage.value = error?.response?.data?.message || 'Erreur lors de la connexion. Veuillez vérifier vos identifiants.';
   }
