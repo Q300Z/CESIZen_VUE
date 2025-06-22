@@ -49,22 +49,42 @@ const deleteArticle = async (article: Article) => {
 </script>
 
 <template>
-  <v-data-table :headers="headers" :hide-default-footer="articles.length < 11" :items="articles">
+  <v-data-table
+    :headers="headers"
+    :hide-default-footer="articles.length < 11"
+    :items="articles"
+  >
     <template #top>
       <v-toolbar flat>
         <v-toolbar-title>Liste des articles</v-toolbar-title>
-        <v-spacer></v-spacer>
-        <v-btn color="primary" to="/admin/infos/add">Ajouter un article</v-btn>
+        <v-spacer />
+        <v-btn
+          color="primary"
+          to="/admin/infos/add"
+        >
+          Ajouter un article
+        </v-btn>
       </v-toolbar>
     </template>
 
     <template #item.actions="{ item }">
-      <v-btn :to="'/admin/infos/edit/'+item.id" icon variant="text">
+      <v-btn
+        :to="'/admin/infos/edit/'+item.id"
+        icon
+        variant="text"
+      >
         <v-icon>mdi-pencil</v-icon>
       </v-btn>
-      <ModalConfirmation title="Confirmation de la suppression" @confirm="() => deleteArticle(item)">
+      <ModalConfirmation
+        title="Confirmation de la suppression"
+        @confirm="() => deleteArticle(item)"
+      >
         <template #activation="{props}">
-          <v-btn icon v-bind="props" variant="text">
+          <v-btn
+            icon
+            v-bind="props"
+            variant="text"
+          >
             <v-icon>mdi-delete</v-icon>
           </v-btn>
         </template>

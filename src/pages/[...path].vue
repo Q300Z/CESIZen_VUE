@@ -1,11 +1,11 @@
-<script setup lang="ts">
+<script lang="ts" setup>
 
 </script>
 
 <template>
-<NotFound/>
+  <NotFound />
 </template>
 
-<style scoped lang="sass">
+<style lang="sass" scoped>
 
 </style>

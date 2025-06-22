@@ -28,14 +28,23 @@ const deleteAccount = async () => {
 
 <template>
   <v-container>
-    <h1 class="text-h5 mb-4">Voulez-vous vraiment supprimer votre compte ?</h1>
+    <h1 class="text-h5 mb-4">
+      Voulez-vous vraiment supprimer votre compte ?
+    </h1>
     <p class="text-subtitle-1 mb-4">
       Cette action est irréversible et supprimera toutes vos données associées à ce compte.
     </p>
-    <v-btn class="mr-2" color="error" @click="deleteAccount()">
+    <v-btn
+      class="mr-2"
+      color="error"
+      @click="deleteAccount()"
+    >
       Supprimer mon compte
     </v-btn>
-    <v-btn to="/profil" variant="tonal">
+    <v-btn
+      to="/profil"
+      variant="tonal"
+    >
       Annuler
     </v-btn>
   </v-container>

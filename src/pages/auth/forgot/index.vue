@@ -26,15 +26,23 @@ const getValide = (e: boolean) => {
 </script>
 
 <template>
-  <v-stepper :items="['Mot de passe oublié', 'Envoie du message électronique']" max-width="800">
-    <template v-slot:item.1>
-      <StepForgotPassword @email="getEmail" @valide="getValide"/>
+  <v-stepper
+    :items="['Mot de passe oublié', 'Envoie du message électronique']"
+    max-width="800"
+  >
+    <template #item.1>
+      <StepForgotPassword
+        @email="getEmail"
+        @valide="getValide"
+      />
     </template>
 
-    <template v-slot:item.2>
-      <StepSendEmail :email="email" :valide="emailValide"/>
+    <template #item.2>
+      <StepSendEmail
+        :email="email"
+        :valide="emailValide"
+      />
     </template>
-
   </v-stepper>
 </template>
 

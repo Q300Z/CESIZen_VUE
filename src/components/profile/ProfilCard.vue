@@ -1,7 +1,7 @@
 <script lang="ts" setup>
-
 import {Role, type User} from "@/types";
 
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 const props = defineProps<{
   user: User
 }>()
@@ -20,18 +20,29 @@ const getRoleColor = (role: Role) => {
 </script>
 
 <template>
-  <v-card :min-width="$vuetify.display.mobile?0:800" :subtitle="user.email" :title="user.name" elevation="3"
-          prepend-icon="mdi-account">
+  <v-card
+    :min-width="$vuetify.display.mobile?0:800"
+    :subtitle="user.email"
+    :title="user.name"
+    elevation="3"
+    prepend-icon="mdi-account"
+  >
     <v-card-text>
       <div class="d-flex ga-5">
         <div>
           Rôle :
-          <v-chip :color="getRoleColor(user.role)" text-color="white">
+          <v-chip
+            :color="getRoleColor(user.role)"
+            text-color="white"
+          >
             {{ user.role }}
           </v-chip>
         </div>
-        <v-spacer/>
-        <slot :item="user" name="action"></slot>
+        <v-spacer />
+        <slot
+          :item="user"
+          name="action"
+        />
       </div>
     </v-card-text>
   </v-card>

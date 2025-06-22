@@ -1,5 +1,8 @@
 <template>
-  <v-container class="fill-height" max-width="900">
+  <v-container
+    class="fill-height"
+    max-width="900"
+  >
     <div>
       <v-img
         class="mb-4"
@@ -8,8 +11,12 @@
       />
 
       <div class="mb-8 text-center">
-        <div class="text-body-2 font-weight-light mb-n1">Welcome to</div>
-        <h1 class="text-h2 font-weight-bold">Vuetify</h1>
+        <div class="text-body-2 font-weight-light mb-n1">
+          Welcome to
+        </div>
+        <h1 class="text-h2 font-weight-bold">
+          Vuetify
+        </h1>
       </div>
 
       <v-row>
@@ -23,7 +30,7 @@
             variant="tonal"
           >
             <template #image>
-              <v-img position="top right"/>
+              <v-img position="top right" />
             </template>
 
             <template #title>
@@ -35,8 +42,11 @@
             <template #subtitle>
               <div class="text-subtitle-1">
                 Change this page by updating
-                <v-kbd>{{
+                <v-kbd>
+                  {{
                     `
+
+
 
                   <HelloWorld/>
                   ` }}
@@ -49,7 +59,11 @@
           </v-card>
         </v-col>
 
-        <v-col v-for="link in links" :key="link.href" cols="6">
+        <v-col
+          v-for="link in links"
+          :key="link.href"
+          cols="6"
+        >
           <v-card
             :href="link.href"
             :prepend-icon="link.icon"

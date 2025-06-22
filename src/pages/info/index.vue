@@ -44,24 +44,41 @@ onMounted(async () => {
     >
       <template #default="{ items }">
         <div class="d-flex justify-center flex-wrap ga-6">
-          <div v-for="article in items" :key="article.raw.id" style="width: 300px; max-height: 300px">
-            <ArticleCard :article="article.raw" >
+          <div
+            v-for="article in items"
+            :key="article.raw.id"
+            style="width: 300px; max-height: 300px"
+          >
+            <ArticleCard :article="article.raw">
               <template #action="{item}">
-                <v-btn :to="`/info/${item.id}`" color="primary">Lire la suite</v-btn>
+                <v-btn
+                  :to="`/info/${item.id}`"
+                  color="primary"
+                >
+                  Lire la suite
+                </v-btn>
               </template>
             </ArticleCard>
           </div>
-          </div>
+        </div>
       </template>
 
       <template #no-data>
-        <v-alert type="info">Aucun article trouvé.</v-alert>
+        <v-alert type="info">
+          Aucun article trouvé.
+        </v-alert>
       </template>
 
       <template #loader>
         <v-row>
-          <v-col v-for="n in 6" :key="n" cols="12" md="4" sm="6">
-            <v-skeleton-loader type="card"/>
+          <v-col
+            v-for="n in 6"
+            :key="n"
+            cols="12"
+            md="4"
+            sm="6"
+          >
+            <v-skeleton-loader type="card" />
           </v-col>
         </v-row>
       </template>

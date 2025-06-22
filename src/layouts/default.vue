@@ -1,12 +1,12 @@
 <template>
-  <AppBar/>
+  <AppBar />
   <v-main>
     <div class="pa-5">
-      <router-view/>
+      <router-view />
     </div>
   </v-main>
 
-  <AppFooter/>
+  <AppFooter />
 </template>
 
 <script lang="ts" setup>

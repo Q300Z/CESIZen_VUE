@@ -39,7 +39,9 @@ const submit = async (formData: Partial<Article>) => {
 
 <template>
   <v-container>
-    <h1 class="text-h5 mb-4">Ajout d’un article</h1>
+    <h1 class="text-h5 mb-4">
+      Ajout d’un article
+    </h1>
 
     <v-alert
       v-if="alert"
@@ -53,7 +55,10 @@ const submit = async (formData: Partial<Article>) => {
       {{ alert }}
     </v-alert>
 
-    <ArticleForm :model-value="article" @submit="submit"/>
+    <ArticleForm
+      :model-value="article"
+      @submit="submit"
+    />
   </v-container>
 </template>
 

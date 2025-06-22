@@ -5,7 +5,7 @@ const props = defineProps<{
   tracker: Tracker;
 }>();
 
-const getImage = computed(()=> import.meta.env.VITE_API_URL+props.tracker.emotion.image)
+const getImage = computed(() => import.meta.env.VITE_API_URL + props.tracker.emotion.image)
 
 // Fonction pour tronquer le contenu
 const truncateContent = (content: string, maxLength: number) => {
@@ -17,18 +17,27 @@ const truncateContent = (content: string, maxLength: number) => {
 </script>
 
 <template>
-  <v-card >
-<div class="d-flex justify-center">
-  <v-img :src="getImage" height="200" width="200" />
-</div>
+  <v-card>
+    <div class="d-flex justify-center">
+      <v-img
+        :src="getImage"
+        height="200"
+        width="200"
+      />
+    </div>
     <v-card-title>{{ tracker.emotion.name }}</v-card-title>
-    <v-card-subtitle>{{ truncateContent(tracker.description,100) }}</v-card-subtitle>
+    <v-card-subtitle>{{ truncateContent(tracker.description, 100) }}</v-card-subtitle>
     <v-card-text>
-      <slot :item="tracker" name="content">
-      </slot>
+      <slot
+        :item="tracker"
+        name="content"
+      />
     </v-card-text>
     <v-card-actions>
-      <slot :item="tracker" name="action"></slot>
+      <slot
+        :item="tracker"
+        name="action"
+      />
     </v-card-actions>
   </v-card>
 </template>

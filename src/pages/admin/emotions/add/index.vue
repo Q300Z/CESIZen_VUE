@@ -17,15 +17,15 @@ const emotion: Ref<Emotion | undefined> = ref()
 const alert = ref('')
 const alertType = ref<'success' | 'error'>('success')
 
-const base:Ref<boolean> = ref(false)
+const base: Ref<boolean> = ref(false)
 
 const submit = async (formData: FormData) => {
   try {
-    let res=null;
-    if(base)
-     res = await axios.post('/emotions', formData, {headers: {'Content-Type': 'multipart/form-data'}})
+    let res = null;
+    if (base.value)
+      res = await axios.post('/emotions', formData, {headers: {'Content-Type': 'multipart/form-data'}})
     else
-     res = await axios.post('/emotions/base', formData, {headers: {'Content-Type': 'multipart/form-data'}})
+      res = await axios.post('/emotions/base', formData, {headers: {'Content-Type': 'multipart/form-data'}})
 
     console.log("Emotion créé :", res.data.data)
 
@@ -46,7 +46,9 @@ const submit = async (formData: FormData) => {
 
 <template>
   <v-container>
-    <h1 class="text-h5 mb-4">Ajout d’une emotion</h1>
+    <h1 class="text-h5 mb-4">
+      Ajout d’une emotion
+    </h1>
 
     <v-alert
       v-if="alert"
@@ -59,8 +61,17 @@ const submit = async (formData: FormData) => {
     >
       {{ alert }}
     </v-alert>
-    <v-switch label="Emotion de base ?" color="primary" inset v-model="base"></v-switch>
-    <EmotionForm :model-value="emotion" @submit="submit" :base="base"/>
+    <v-switch
+      v-model="base"
+      color="primary"
+      inset
+      label="Emotion de base ?"
+    />
+    <EmotionForm
+      :base="base"
+      :model-value="emotion"
+      @submit="submit"
+    />
   </v-container>
 </template>
 

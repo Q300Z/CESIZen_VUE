@@ -46,7 +46,12 @@ onMounted(async () => {
         <v-toolbar flat>
           <v-toolbar-title>Liste des trackers</v-toolbar-title>
           <v-spacer />
-          <v-btn color="primary" to="/tracker/add">Ajouter un tracker</v-btn>
+          <v-btn
+            color="primary"
+            to="/tracker/add"
+          >
+            Ajouter un tracker
+          </v-btn>
         </v-toolbar>
       </template>
       <template #default="{ items }">
@@ -60,22 +65,34 @@ onMounted(async () => {
           >
             <TrackerCard :tracker="tracker.raw">
               <template #action="{item}">
-                <v-btn :to="`/tracker/${item.id}`" color="primary">Détails</v-btn>
+                <v-btn
+                  :to="`/tracker/${item.id}`"
+                  color="primary"
+                >
+                  Détails
+                </v-btn>
               </template>
             </TrackerCard>
-
           </v-col>
         </v-row>
       </template>
 
       <template #no-data>
-        <v-alert type="info">Aucun tracker trouvé.</v-alert>
+        <v-alert type="info">
+          Aucun tracker trouvé.
+        </v-alert>
       </template>
 
       <template #loader>
         <v-row>
-          <v-col v-for="n in 6" :key="n" cols="12" md="4" sm="6">
-            <v-skeleton-loader type="card"/>
+          <v-col
+            v-for="n in 6"
+            :key="n"
+            cols="12"
+            md="4"
+            sm="6"
+          >
+            <v-skeleton-loader type="card" />
           </v-col>
         </v-row>
       </template>

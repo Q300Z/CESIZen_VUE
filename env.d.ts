@@ -10,6 +10,7 @@ interface ViteTypeOptions {
 
 interface ImportMetaEnv {
   readonly VITE_API_URL: string
+  readonly VERSION: string
   // more env variables...
 }
 

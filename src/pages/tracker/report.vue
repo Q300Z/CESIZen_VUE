@@ -1,20 +1,11 @@
 <script lang="ts" setup>
 import axios from '@/lib/axios.ts';
-import { formatISO, subMonths, subYears } from 'date-fns';
-import {
-  Chart as ChartJS,
-  Title,
-  Tooltip,
-  Legend,
-  BarElement,
-  CategoryScale,
-  LinearScale
-} from 'chart.js';
-import { Bar } from 'vue-chartjs';
-import type { APIResponse, TrackerReport } from '@/types';
+import {formatISO, subMonths, subYears} from 'date-fns';
+import {BarElement, CategoryScale, Chart as ChartJS, Legend, LinearScale, Title, Tooltip} from 'chart.js';
+import {Bar} from 'vue-chartjs';
+import type {APIResponse, TrackerReport} from '@/types';
 import type {AxiosResponse} from "axios";
 import {useTheme} from 'vuetify/framework';
-
 
 
 ChartJS.register(Title, Tooltip, Legend, BarElement, CategoryScale, LinearScale);
@@ -61,7 +52,7 @@ const fetchData = async () => {
   const endStr = formatISO(end, {representation: 'date'});
 
   try {
-    const res:AxiosResponse<APIResponse<TrackerReport>> = await axios.get(
+    const res: AxiosResponse<APIResponse<TrackerReport>> = await axios.get(
       `/trackers/report?start=${startStr}&end=${endStr}`
     );
     if (res.status === 200 && res.data.data) {
@@ -118,15 +109,15 @@ function getRandomColor() {
 const chartOptions = computed(() => ({
   responsive: true,
   plugins: {
-    legend: { position: 'top' as const },
-    title: { display: true, text: 'Émotions par période' },
+    legend: {position: 'top' as const},
+    title: {display: true, text: 'Émotions par période'},
   },
   scales: {
     x: {
-      title: { display: true, text: 'Mois' },
+      title: {display: true, text: 'Mois'},
     },
     y: {
-      title: { display: true, text: 'Occurrences' },
+      title: {display: true, text: 'Occurrences'},
       beginAtZero: true,
     },
   },
@@ -137,7 +128,9 @@ const chartOptions = computed(() => ({
 
 <template>
   <v-container>
-    <h1 class="text-h4 mb-4">Statistiques d’émotions</h1>
+    <h1 class="text-h4 mb-4">
+      Statistiques d’émotions
+    </h1>
     <v-select
       v-model="selectedPeriod"
       :items="periodOptions"
@@ -147,8 +140,17 @@ const chartOptions = computed(() => ({
       label="Période"
     />
 
-    <v-alert v-if="error" type="error">{{ error }}</v-alert>
-    <v-progress-linear v-if="loading" color="primary" indeterminate/>
+    <v-alert
+      v-if="error"
+      type="error"
+    >
+      {{ error }}
+    </v-alert>
+    <v-progress-linear
+      v-if="loading"
+      color="primary"
+      indeterminate
+    />
 
     <Bar
       v-if="!loading && !error && Object.keys(reportData).length > 0"

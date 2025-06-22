@@ -1,10 +1,10 @@
 <script lang="ts" setup>
-import { definePage } from "unplugin-vue-router/runtime";
-import { useRoute, useRouter } from "vue-router";
-import { onMounted, ref } from "vue";
+import {definePage} from "unplugin-vue-router/runtime";
+import {useRoute, useRouter} from "vue-router";
+import {onMounted, ref} from "vue";
 import axios from "@/lib/axios";
-import type { Emotion, EmotionBase, RouteParams } from "@/types";
-import { useEmotionStore } from "@/stores/emotion.ts";
+import type {EmotionBase, RouteParams} from "@/types";
+import {useEmotionStore} from "@/stores/emotion.ts";
 
 definePage({
   meta: {
@@ -25,7 +25,7 @@ const alertType = ref<"success" | "error">("success");
 const submit = async (formData: FormData) => {
   try {
     const res = await axios.put(`/emotions/${emotion.value.id}`, formData, {
-      headers: { "Content-Type": "multipart/form-data" },
+      headers: {"Content-Type": "multipart/form-data"},
     });
     store.updateEmotionBase(res.data.data);
     alert.value = "Émotion mise à jour avec succès.";
@@ -42,10 +42,10 @@ const submit = async (formData: FormData) => {
 };
 
 onMounted(async () => {
-  const { id } = route.params as RouteParams;
+  const {id} = route.params as RouteParams;
   if (id) {
     try {
-      emotion.value = store.getEmotionBaseById(Number(id))|| {};
+      emotion.value = store.getEmotionBaseById(Number(id)) || {};
       if (emotion.value) {
         const res = await axios.get(`/emotions/base/${id}`);
         emotion.value = res.data.data;
@@ -73,11 +73,14 @@ onMounted(async () => {
       {{ alert }}
     </v-alert>
 
-    <v-card v-if="!emotion" title="Chargement de l'émotion de base..."></v-card>
+    <v-card
+      v-if="!emotion"
+      title="Chargement de l'émotion de base..."
+    />
     <EmotionForm
       v-else
-      :model-value="emotion"
       :base="true"
+      :model-value="emotion"
       @submit="submit"
     />
   </v-container>

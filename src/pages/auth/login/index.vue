@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import {ref, onMounted} from 'vue';
+import {onMounted, ref} from 'vue';
 import {definePage} from 'unplugin-vue-router/runtime';
 import {useUserStore} from '@/stores/user.ts';
 import type {APIResponse, AuthResponse} from "@/types";
@@ -49,7 +49,7 @@ const submit = async () => {
       store.setUser(response.data.data.user);
       router.push({name: '/'});
     }
-  } catch (error: any) {
+  } catch (error: unknown) {
     console.error('Erreur lors de la connexion:', error);
     errorMessage.value = error?.response?.data?.message || 'Erreur lors de la connexion. Veuillez vérifier vos identifiants.';
   }
@@ -57,16 +57,21 @@ const submit = async () => {
 </script>
 
 <template>
-  <v-card max-width="800" min-width="400" subtitle="Entrez vos identifiants" title="Connexion">
+  <v-card
+    max-width="800"
+    min-width="400"
+    subtitle="Entrez vos identifiants"
+    title="Connexion"
+  >
     <template #text>
       <div class="d-flex flex-column ga-3">
         <v-form v-model="formValid">
           <v-alert
             v-if="errorMessage"
+            class="mb-4"
+            closable
             type="error"
             variant="outlined"
-            class="mb-4"
-            dismissible
             @click:close="errorMessage = ''"
           >
             {{ errorMessage }}
@@ -88,13 +93,25 @@ const submit = async () => {
           />
 
           <div class="d-flex flex-column ga-2">
-            <v-btn block variant="text" @click="router.push({ name: '/auth/forgot/' })">
+            <v-btn
+              block
+              variant="text"
+              @click="router.push({ name: '/auth/forgot/' })"
+            >
               Oubli de mot de passe
             </v-btn>
-            <v-btn block color="primary" @click="submit">
+            <v-btn
+              block
+              color="primary"
+              @click="submit"
+            >
               Connexion
             </v-btn>
-            <v-btn block color="secondary" @click="router.push({ name: '/auth/register/' })">
+            <v-btn
+              block
+              color="secondary"
+              @click="router.push({ name: '/auth/register/' })"
+            >
               Inscription
             </v-btn>
           </div>

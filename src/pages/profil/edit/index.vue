@@ -3,7 +3,7 @@ import {definePage} from "unplugin-vue-router/runtime"
 import {useRoute, useRouter} from "vue-router"
 import axios from "@/lib/axios"
 import type {User} from "@/types"
-import {onMounted, ref} from "vue"
+import {ref} from "vue"
 import ProfilForm from "@/components/profile/ProfilForm.vue"
 import {useUserStore} from "@/stores/user.ts"
 
@@ -52,7 +52,9 @@ const submit = async (formData: Partial<User>) => {
 
 <template>
   <v-container>
-    <h1 class="text-h5 mb-4">Modification du profil</h1>
+    <h1 class="text-h5 mb-4">
+      Modification du profil
+    </h1>
 
     <v-alert
       v-if="alert"
@@ -66,8 +68,15 @@ const submit = async (formData: Partial<User>) => {
       {{ alert }}
     </v-alert>
 
-    <v-card v-if="!user" title="Chargement du profil..."></v-card>
-    <ProfilForm v-else :model-value="user" @submit="submit"/>
+    <v-card
+      v-if="!user"
+      title="Chargement du profil..."
+    />
+    <ProfilForm
+      v-else
+      :model-value="user"
+      @submit="submit"
+    />
   </v-container>
 </template>
 

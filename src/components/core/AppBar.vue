@@ -6,28 +6,34 @@ const isDev = import.meta.env.DEV;
 </script>
 
 <template>
-  <v-app-bar density="comfortable" elevation="2">
+  <v-app-bar
+    density="comfortable"
+    elevation="2"
+  >
     <v-app-bar-title>
       CESIZen <span v-if="isDev"> - DEV</span>
     </v-app-bar-title>
     <template #prepend>
-      <v-app-bar-nav-icon v-if="$vuetify.display.mobile" variant="text"
-                          @click.stop="drawer = !drawer"></v-app-bar-nav-icon>
+      <v-app-bar-nav-icon
+        v-if="$vuetify.display.mobile"
+        variant="text"
+        @click.stop="drawer = !drawer"
+      />
       <RouterLink to="/">
         <v-img
           alt="Logo CESIZen"
-          contain
+          cover
           height="50"
           src="@/assets/cesizen_logo_small.png"
           width="100"
-        ></v-img>
+        />
       </RouterLink>
     </template>
 
-    <MenuUser/>
+    <MenuUser />
   </v-app-bar>
 
-  <NavBar :drawer="drawer"/>
+  <NavBar :drawer="drawer" />
 </template>
 
 <style lang="sass" scoped>

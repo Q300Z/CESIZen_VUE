@@ -40,8 +40,15 @@ onMounted(async () => {
 
 <template>
   <v-container class="d-flex flex-column ga-5 align-center">
-    <v-card v-if="!article" title="Chargement de l'article..."></v-card>
-    <ArticleCard v-else :article="article" class="w-sm-100 w-md-66">
+    <v-card
+      v-if="!article"
+      title="Chargement de l'article..."
+    />
+    <ArticleCard
+      v-else
+      :article="article"
+      class="w-sm-100 w-md-66"
+    >
       <template #action="{item}">
         <v-btn
           v-role="['admin']"

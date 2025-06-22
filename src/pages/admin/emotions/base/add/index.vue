@@ -1,6 +1,6 @@
 <script lang="ts" setup>
 import {definePage} from "unplugin-vue-router/runtime"
-import type {Emotion, EmotionBase} from "@/types"
+import type {EmotionBase} from "@/types"
 import axios from "@/lib/axios"
 import {ref} from "vue"
 
@@ -40,7 +40,9 @@ const submit = async (formData: FormData) => {
 
 <template>
   <v-container>
-    <h1 class="text-h5 mb-4">Ajout d’une emotion de base</h1>
+    <h1 class="text-h5 mb-4">
+      Ajout d’une emotion de base
+    </h1>
 
     <v-alert
       v-if="alert"
@@ -53,7 +55,11 @@ const submit = async (formData: FormData) => {
     >
       {{ alert }}
     </v-alert>
-    <EmotionForm :model-value="emotion" @submit="submit" :base="true"/>
+    <EmotionForm
+      :base="true"
+      :model-value="emotion"
+      @submit="submit"
+    />
   </v-container>
 </template>
 

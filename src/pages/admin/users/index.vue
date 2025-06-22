@@ -50,22 +50,42 @@ const deleteUser = async (user: User) => {
 </script>
 
 <template>
-  <v-data-table :headers="headers" :hide-default-footer="users.length < 11" :items="users">
+  <v-data-table
+    :headers="headers"
+    :hide-default-footer="users.length < 11"
+    :items="users"
+  >
     <template #top>
       <v-toolbar flat>
         <v-toolbar-title>Liste des utilisateurs</v-toolbar-title>
-        <v-spacer></v-spacer>
-        <v-btn color="primary" to="/admin/users/add">Ajouter un utilisateur</v-btn>
+        <v-spacer />
+        <v-btn
+          color="primary"
+          to="/admin/users/add"
+        >
+          Ajouter un utilisateur
+        </v-btn>
       </v-toolbar>
     </template>
 
     <template #item.actions="{ item }">
-      <v-btn :to="'/admin/users/'+item.id" icon variant="text">
+      <v-btn
+        :to="'/admin/users/'+item.id"
+        icon
+        variant="text"
+      >
         <v-icon>mdi-pencil</v-icon>
       </v-btn>
-      <ModalConfirmation title="Confirmation de la suppression" @confirm="() => deleteUser(item)">
+      <ModalConfirmation
+        title="Confirmation de la suppression"
+        @confirm="() => deleteUser(item)"
+      >
         <template #activation="{props}">
-          <v-btn icon v-bind="props" variant="text">
+          <v-btn
+            icon
+            v-bind="props"
+            variant="text"
+          >
             <v-icon>mdi-delete</v-icon>
           </v-btn>
         </template>

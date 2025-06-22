@@ -33,10 +33,17 @@ onMounted(async () => {
 
 <template>
   <v-container class="d-flex flex-column ga-5 align-center">
-    <v-card v-if="!article" title="Chargement du article..."></v-card>
-    <ArticleCard v-else :article="article" class="w-sm-100 w-md-66">
+    <v-card
+      v-if="!article"
+      title="Chargement du article..."
+    />
+    <ArticleCard
+      v-else
+      :article="article"
+      class="w-sm-100 w-md-66"
+    >
       <template #content="{item}">
-        <div v-html="item.content"></div>
+        <div v-html="item.content" />
       </template>
     </ArticleCard>
   </v-container>

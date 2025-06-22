@@ -76,23 +76,44 @@ const submit = () => {
 </script>
 
 <template>
-  <v-alert v-if="showAlert" v-model="showAlert" :type="alertType" class="mb-4" dismissible>
+  <v-alert
+    v-if="showAlert"
+    v-model="showAlert"
+    :type="alertType"
+    class="mb-4"
+    closable
+  >
     {{ alertMessage }}
   </v-alert>
-  <v-stepper :items="['Renseignement de l\'utilisateur', 'Renseignement du mot de passe', 'Confirmation']"
-             max-width="800">
-    <template v-slot:item.1>
-      <StepUserInfo @email="getEmail" @nom="getNom" @valide="getUserinfoValide"/>
+  <v-stepper
+    :items="['Renseignement de l\'utilisateur', 'Renseignement du mot de passe', 'Confirmation']"
+    max-width="800"
+  >
+    <template #item.1>
+      <StepUserInfo
+        @email="getEmail"
+        @nom="getNom"
+        @valide="getUserinfoValide"
+      />
     </template>
 
-    <template v-slot:item.2>
-      <StepSetPassword @password="getPassword" @passwordValide="getPasswordValide"/>
+    <template #item.2>
+      <StepSetPassword
+        @password="getPassword"
+        @password-valide="getPasswordValide"
+      />
     </template>
-    <template v-slot:item.3>
-      <StepConfirmation :email="email" :loading="loading" :nom="nom" :password="password"
-                        :passwordValide="passwordValide" :userinfoValide="userinfoValide" @submit="submit"/>
+    <template #item.3>
+      <StepConfirmation
+        :email="email"
+        :loading="loading"
+        :nom="nom"
+        :password="password"
+        :password-valide="passwordValide"
+        :userinfo-valide="userinfoValide"
+        @submit="submit"
+      />
     </template>
-
   </v-stepper>
 </template>
 

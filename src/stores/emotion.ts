@@ -11,24 +11,24 @@ export const useEmotionStore = defineStore('emotion', {
 
   getters: {
     getEmotionById: (state) => {
-      return (id: number):Emotion|undefined => state.emotions.find((emotion: Emotion) => emotion.id === id);
+      return (id: number): Emotion | undefined => state.emotions.find((emotion: Emotion) => emotion.id === id);
     },
     getEmotionBaseById: (state) => {
       return (id: number) => state.emotionsBase.find((emotionBase: EmotionBase) => emotionBase.id === id);
     },
     getEmotionByEmotionsBase: (state) => {
-      return state.emotions.map((e:Emotion) => ({
+      return state.emotions.map((e: Emotion) => ({
         ...e,
-        emotionBaseName: state.emotionsBase.find((b:EmotionBase) => b.id === e.emotionBaseID)?.name || "Inconnue",
+        emotionBaseName: state.emotionsBase.find((b: EmotionBase) => b.id === e.emotionBaseID)?.name || "Inconnue",
       }));
     },
     getEmotionByEmotionsBaseById: (state) => {
-      return (id: number) =>{
+      return (id: number) => {
         const emotion = state.emotions.find((emotion: Emotion) => emotion.id === id);
         if (emotion) {
           return {
             ...emotion,
-            emotionBaseName: state.emotionsBase.find((b:EmotionBase) => b.id === emotion.emotionBaseID)?.name || "Inconnue",
+            emotionBaseName: state.emotionsBase.find((b: EmotionBase) => b.id === emotion.emotionBaseID)?.name || "Inconnue",
           };
         }
         return null;

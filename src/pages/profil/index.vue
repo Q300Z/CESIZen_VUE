@@ -1,12 +1,8 @@
 <script lang="ts" setup>
 import {definePage} from 'unplugin-vue-router/runtime'
-import {useRoute, useRouter} from 'vue-router'
-import axios from '@/lib/axios'
-import type {APIResponse, User} from '@/types'
-import {onMounted} from 'vue'
+import type {User} from '@/types'
 import {useUserStore} from '@/stores/user'
 import ProfilCard from '@/components/profile/ProfilCard.vue'
-import type {AxiosResponse} from "axios";
 
 definePage({
   meta: {
@@ -22,8 +18,15 @@ const user: ComputedRef<User> = computed(() => store.getUser)
 
 <template>
   <v-container class="d-flex flex-column ga-5 align-center">
-    <v-card v-if="!user" title="Chargement du profil..."></v-card>
-    <ProfilCard v-else :user="user" class="w-sm-100 w-md-66">
+    <v-card
+      v-if="!user"
+      title="Chargement du profil..."
+    />
+    <ProfilCard
+      v-else
+      :user="user"
+      class="w-sm-100 w-md-66"
+    >
       <template #action="{item}">
         <v-btn
           :to="'/profil/edit/'"
@@ -35,11 +38,13 @@ const user: ComputedRef<User> = computed(() => store.getUser)
         </v-btn>
         <v-btn
           :to="'/profil/delete/'"
+          color="red"
           prepend-icon="mdi-delete"
           size="small"
           variant="tonal"
-          color="red"
-        >Supprimer le compte</v-btn>
+        >
+          Supprimer le compte
+        </v-btn>
       </template>
     </ProfilCard>
   </v-container>

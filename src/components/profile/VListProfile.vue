@@ -55,7 +55,6 @@ const getRole = computed(() => {
       />
     </template>
   </v-list-item>
-
 </template>
 
 <style lang="sass" scoped>

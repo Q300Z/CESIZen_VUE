@@ -1,6 +1,7 @@
 <script lang="ts" setup>
 import type {Article} from "@/types";
 
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 const props = defineProps<{
   article: Article;
 }>();
@@ -20,13 +21,19 @@ const truncateContent = (content: string, maxLength: number) => {
     <v-card-subtitle>{{ article.description }}</v-card-subtitle>
 
     <v-card-text>
-      <slot :item="article" name="content">
-        <div v-html="truncateContent(article.content, 100)"></div>
+      <slot
+        :item="article"
+        name="content"
+      >
+        <div v-html="truncateContent(article.content, 100)" />
       </slot>
     </v-card-text>
 
     <v-card-actions>
-      <slot :item="article" name="action"></slot>
+      <slot
+        :item="article"
+        name="action"
+      />
     </v-card-actions>
   </v-card>
 </template>

@@ -1,7 +1,7 @@
 <script lang="ts" setup>
 
 import {onMounted} from "vue";
-import type {APIResponse, Tracker, RouteParams} from "@/types";
+import type {APIResponse, RouteParams, Tracker} from "@/types";
 import type {AxiosResponse} from "axios";
 import axios from "@/lib/axios.ts";
 import {useTrackerStore} from "@/stores/tracker.ts";
@@ -17,8 +17,8 @@ onMounted(async () => {
   const trackerId = Number(id)
 
   try {
-    tracker.value = store.getTrackerById(trackerId)|| null;
-    if(!tracker.value) {
+    tracker.value = store.getTrackerById(trackerId) || null;
+    if (!tracker.value) {
       const res: AxiosResponse<APIResponse<Tracker>> = await axios.get(`trackers/${trackerId}`)
       if (res.status === 200 && res.data.data) {
         store.updateTracker(res.data.data)
@@ -36,10 +36,17 @@ onMounted(async () => {
 
 <template>
   <div class="d-flex flex-column ga-5 align-center">
-    <v-card v-if="!tracker" title="Chargement du tracker..."></v-card>
-    <TrackerCard v-else :tracker="tracker" class="w-sm-100 w-md-66">
+    <v-card
+      v-if="!tracker"
+      title="Chargement du tracker..."
+    />
+    <TrackerCard
+      v-else
+      :tracker="tracker"
+      class="w-sm-100 w-md-66"
+    >
       <template #content="{item}">
-        <div v-html="item.description"></div>
+        <div v-html="item.description" />
       </template>
     </TrackerCard>
   </div>

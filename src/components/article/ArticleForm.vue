@@ -42,9 +42,19 @@ const handleSubmit = () => {
       required
     />
 
-    <v-textarea v-model="form.content" auto-grow counter></v-textarea>
+    <v-textarea
+      v-model="form.content"
+      auto-grow
+      counter
+    />
 
-    <v-btn class="mt-4" color="primary" type="submit">Valider</v-btn>
+    <v-btn
+      class="mt-4"
+      color="primary"
+      type="submit"
+    >
+      Valider
+    </v-btn>
   </v-form>
 </template>
 

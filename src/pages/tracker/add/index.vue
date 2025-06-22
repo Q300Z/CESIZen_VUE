@@ -39,7 +39,6 @@ const submit = async (formData: Partial<Tracker>) => {
 </script>
 
 <template>
-
   <v-container>
     <v-alert
       v-if="alert"
@@ -52,7 +51,10 @@ const submit = async (formData: Partial<Tracker>) => {
     >
       {{ alert }}
     </v-alert>
-    <TrackerForm :model-value="tracker" @submit="submit"/>
+    <TrackerForm
+      :model-value="tracker"
+      @submit="submit"
+    />
   </v-container>
 </template>
 

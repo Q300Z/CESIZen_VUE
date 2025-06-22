@@ -11,41 +11,48 @@ const emit = defineEmits<{
 
 <template>
   <v-dialog scrim>
-    <template v-slot:activator="{ props: activatorProps }">
-      <slot :props="activatorProps" name="activation">
+    <template #activator="{ props: activatorProps }">
+      <slot
+        :props="activatorProps"
+        name="activation"
+      >
         <v-btn v-bind="activatorProps">
           Confirmation
         </v-btn>
       </slot>
     </template>
 
-    <template v-slot:default="{ isActive }">
+    <template #default="{ isActive }">
       <div class="d-flex justify-center">
-      <v-card max-width="800">
-        <v-card-title>
-          <slot name="titre">{{ props.title }}</slot> <!-- Utilisation de la prop title -->
-        </v-card-title>
-        <v-card-text>
-          <slot name="description">{{ props.description }}</slot> <!-- Utilisation de la prop description -->
-        </v-card-text>
+        <v-card max-width="800">
+          <v-card-title>
+            <slot name="titre">
+              {{ props.title }}
+            </slot> <!-- Utilisation de la prop title -->
+          </v-card-title>
+          <v-card-text>
+            <slot name="description">
+              {{ props.description }}
+            </slot> <!-- Utilisation de la prop description -->
+          </v-card-text>
 
-        <v-card-actions>
-          <v-spacer></v-spacer>
-          <v-btn
-            color="primary"
-            text
-            @click="emit('confirm');isActive.value=false"
-          >
-            Confirmer
-          </v-btn>
-          <v-btn
-            text
-            @click="isActive.value=false"
-          >
-            Annuler
-          </v-btn>
-        </v-card-actions>
-      </v-card>
+          <v-card-actions>
+            <v-spacer />
+            <v-btn
+              color="primary"
+              variant="text"
+              @click="emit('confirm');isActive.value=false"
+            >
+              Confirmer
+            </v-btn>
+            <v-btn
+              variant="text"
+              @click="isActive.value=false"
+            >
+              Annuler
+            </v-btn>
+          </v-card-actions>
+        </v-card>
       </div>
     </template>
   </v-dialog>
