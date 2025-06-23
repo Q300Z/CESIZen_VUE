@@ -1,10 +1,10 @@
 <script lang="ts" setup>
-const copyrightName = computed(() => {
-  const isDev = import.meta.env.DEV;
-  const version = import.meta.env.VITE_FRONT_VERSION || "ERROR";
-  console.log(import.meta.env);
-  return isDev ? `CESIZen - DEV (${version}) ` : `CESIZen (${version})`;
-});
+const version = import.meta.env.VITE_FRONT_VERSION || "ERROR"
+const isDev = import.meta.env.DEV
+
+const copyrightName = computed(() =>
+  isDev ? `CESIZen - DEV (${version})` : `CESIZen (${version})`
+);
 </script>
 <template>
   <v-footer

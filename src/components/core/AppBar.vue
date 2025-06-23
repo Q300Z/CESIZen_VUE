@@ -24,7 +24,7 @@ const isDev = import.meta.env.DEV;
           alt="Logo CESIZen"
           aspect-ratio="1/1"
           src="@/assets/cesizen_logo_small.png"
-          class="mr-5 ml-10"
+          class="mr-5 ml-5"
           width="50"
         />
       </RouterLink>

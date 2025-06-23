@@ -93,7 +93,7 @@ jobs:
           node-version: '22'
 
       - name: Install dependencies
-        run: NODE_ENV=development npm ci
+        run: npm ci
 
       - name: Show dependencies
         run: npm fund

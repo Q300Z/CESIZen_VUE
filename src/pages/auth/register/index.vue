@@ -88,6 +88,7 @@ const submit = () => {
   <v-stepper
     :items="['Renseignement de l\'utilisateur', 'Renseignement du mot de passe', 'Confirmation']"
     max-width="800"
+    :mobile="$vuetify.display.mobile"
   >
     <template #item.1>
       <StepUserInfo
