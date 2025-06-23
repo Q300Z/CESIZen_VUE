@@ -21,13 +21,11 @@ const base: Ref<boolean> = ref(false)
 
 const submit = async (formData: FormData) => {
   try {
-    let res: null;
     if (!base.value)
-      res = await axios.post('/emotions', formData, {headers: {'Content-Type': 'multipart/form-data'}})
+      await axios.post('/emotions', formData, {headers: {'Content-Type': 'multipart/form-data'}})
     else
-      res = await axios.post('/emotions/base', formData, {headers: {'Content-Type': 'multipart/form-data'}})
+      await axios.post('/emotions/base', formData, {headers: {'Content-Type': 'multipart/form-data'}})
 
-    console.log("Emotion créé :", res.data.data)
 
     alert.value = 'Emotion créé avec succès.'
     alertType.value = 'success'
