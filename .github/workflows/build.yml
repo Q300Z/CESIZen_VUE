@@ -231,6 +231,7 @@ jobs:
           context: .
           file: ./Dockerfile
           push: true
+          target: production
           tags: |
             ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:${{ env.TAG }}
             ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:${{ env.VERSION }}
