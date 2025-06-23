@@ -30,9 +30,9 @@ const submit = async (formData: Partial<Tracker>) => {
       router.push(`/tracker`)
     }, 1500)
 
-  } catch (error) {
+  } catch (error:any) {
     console.error("Erreur lors de la création du tracker :", error)
-    alert.value = "Une erreur est survenue lors de la création du tracker."
+    alert.value = error.response.data.message || "Une erreur est survenue lors de la création du tracker."
     alertType.value = 'error'
   }
 }

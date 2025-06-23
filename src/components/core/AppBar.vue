@@ -22,10 +22,10 @@ const isDev = import.meta.env.DEV;
       <RouterLink to="/">
         <v-img
           alt="Logo CESIZen"
-          cover
-          height="50"
+          aspect-ratio="1/1"
           src="@/assets/cesizen_logo_small.png"
-          width="100"
+          class="mr-5 ml-10"
+          width="50"
         />
       </RouterLink>
     </template>
