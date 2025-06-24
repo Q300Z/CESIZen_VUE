@@ -66,7 +66,7 @@ const mode = import.meta.env.MODE
 <template>
   <v-container>
     <div class="d-flex justify-center flex-column align-center ga-5">
-      <h1>Bienvenue sur</h1>
+      <h1>Bienvenue sur BONJOUR</h1>
       <v-img
         src="/cesizen_logo.png"
         width="200"
