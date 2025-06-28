@@ -5,6 +5,10 @@ const config: CapacitorConfig = {
   appName: 'CESIZen',
   webDir: 'dist',
   zoomEnabled:true,
+  server: {
+    cleartext: false,
+    androidScheme: 'http',
+  },
   android: {
     adjustMarginsForEdgeToEdge: 'auto',
   }
